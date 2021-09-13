@@ -1,3 +1,12 @@
 .idea
-client/client.iml
+.metadata/
 backend/backend.iml
+backend/.classpath
+backend/.project
+backend/.settings/
+backend/target/
+client/client.iml
+client/.classpath
+client/.project
+client/.settings/
+client/target/
