@@ -26,6 +26,38 @@ public class JDBCConnectionPool {
     public static void setUsed_connection(int used_con) {
         used_connection = used_con;
     }
+    
+  //les methodes
+    public synchronized void feed(Collection<ConnectionDB> con)
+    {
+    	collection.addAll(con);
+    }
 
+    public synchronized ConnectionDB connectionEntity()
+    {
 
+        if(used_connection< max_connection  && collection.size()>0) {
+            ConnectionDB con = collection.get(collection.size()-1);
+            used_connection++;
+            collection.remove(con);
+            return con;
+        }
+        else
+            return  null;
+    }
+    public synchronized void returnCon(ConnectionDB con)
+    {
+    	collection.add(con);
+    	used_connection--;
+    }
+    public synchronized void Close()
+    {
+    	for(ConnectionDB c: collection)
+    	{try {
+			c.connection.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}}
+    	
+    }
  }
