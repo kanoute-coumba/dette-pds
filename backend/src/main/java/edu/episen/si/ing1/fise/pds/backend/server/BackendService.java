@@ -1,10 +1,30 @@
 package edu.episen.si.ing1.fise.pds.backend.server;
 
+import edu.episen.si.ing1.fise.pds.backend.connectionPool.DataSource;
 import org.apache.commons.cli.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class BackendService {
+import java.net.ServerSocket;
+import java.net.Socket;
+
+public class BackendService extends Thread {
+
+    public static DataSource ds=new DataSource(5,5);
+    //ServerSocket server;
+
+    Socket client;
+    public static ServerConfig serverConfig;
+    boolean m_bRunThread = true;
+    public static  int max_connection_i = 0, connection_duration_i = 0;
+
+
+    static ServerSocket myServerSocket;
+    static boolean ServerOn = true;
+    public BackendService(Socket clientSocket) {
+
+        client=clientSocket;
+    }
 
     private final static Logger logger = LoggerFactory.getLogger(BackendService.class.getName());
     public static void main (String[] args) throws ParseException {
