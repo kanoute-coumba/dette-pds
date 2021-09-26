@@ -14,8 +14,8 @@ public class ConnectionDB {
         //attribute
 
         private List<Users> person;
-        private static final String crud_script_enVar = "CRUD_SCRIPT";
-        private static final String data_smart_city_enVar = "SMART_CITY";
+        private static final String crud_script_enVar = "CRUD";
+        private static final String data_smart_city_enVar = "SERVER_CONFIG";
         private Config config=null;
         public Connection connection;
         //the builder

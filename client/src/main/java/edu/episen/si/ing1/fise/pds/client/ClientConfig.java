@@ -10,7 +10,7 @@ import org.slf4j.Logger;
 
 public class ClientConfig {
     private final static Logger logger = LoggerFactory.getLogger(ClientConfig.class.getName());
-    private static final String episenClientConfigEnVar = "SMART_CITY";
+    private static final String episenClientConfigEnVar = "CLIENT_CONFIG";
     private final String episenClientConfigFileLocation;
     private ClientConfigCore config;
 
