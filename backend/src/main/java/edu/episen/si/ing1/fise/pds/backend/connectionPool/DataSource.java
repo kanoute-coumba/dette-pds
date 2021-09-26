@@ -1,7 +1,6 @@
 package edu.episen.si.ing1.fise.pds.backend.connectionPool;
 
 import java.util.ArrayList;
-
 public class DataSource {
 
     //attributs
@@ -39,7 +38,23 @@ public class DataSource {
             ConnectionDB c=new ConnectionDB();
             cons.add(c);
         }
-       }
+        conPool.feed(cons);
+    }
 
+
+    //methods
+    public static ConnectionDB takeCon()
+    {
+        return conPool.connectionEntity();
+    }
+    public static void returnCon(ConnectionDB con)
+    {
+        conPool.returnCon(con);
+    }
+    public static void closure()
+    {
+        conPool.Close();
+    }
 
 }
+
