@@ -1,7 +1,7 @@
 driver: "org.postgresql.Driver"
-password: "admin"
 url: "jdbc:postgresql://172.31.249.153:5432/proto"
 username: "postgres"
+password: "admin"
 
 listenPort: 1111
 soTimeout: 2000

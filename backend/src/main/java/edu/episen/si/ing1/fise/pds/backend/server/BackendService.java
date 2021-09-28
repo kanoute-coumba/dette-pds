@@ -1,11 +1,4 @@
 package edu.episen.si.ing1.fise.pds.backend.server;
-
-import edu.episen.si.ing1.fise.pds.backend.connectionPool.ConnectionDB;
-import edu.episen.si.ing1.fise.pds.backend.connectionPool.DataSource;
-import org.apache.commons.cli.*;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -13,17 +6,30 @@ import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 
+import edu.episen.si.ing1.fise.pds.backend.connectionPool.ConnectionDB;
+import edu.episen.si.ing1.fise.pds.backend.connectionPool.DataSource;
+import org.apache.commons.cli.CommandLine;
+import org.apache.commons.cli.CommandLineParser;
+import org.apache.commons.cli.DefaultParser;
+import org.apache.commons.cli.HelpFormatter;
+import org.apache.commons.cli.Option;
+import org.apache.commons.cli.Options;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class BackendService extends Thread {
+
+
     private final static Logger logger = LoggerFactory.getLogger(BackendService.class.getName());
 
     public static DataSource ds=new DataSource(5,5);
     ServerSocket server;
     Socket client;
     public static ServerConfig serverConfig;
-
     static boolean inTestMode  = false;
     static  int maxConnectionValue = 3;
     static  int connectionTimeOutValue = 3;
+
 
     public BackendService(final ServerConfig config) {
         try {
@@ -55,7 +61,7 @@ public class BackendService extends Thread {
                     ds.setUsedConnection(ds.getUsedConnection()+1);
                     //interval between each connexion
                     sleep(connectionTimeOutValue*1000);
-                    if(ds.getUsedConnection()>=connectionTimeOutValue ) {
+                    if(ds.getUsedConnection()>=maxConnectionValue ) {
 
                         out.println("Server is occupied!");
                     }
@@ -110,7 +116,7 @@ public class BackendService extends Thread {
     public void serve() {
         try {
             client= server.accept();
-            logger.debug("A client has been detected !!");
+            logger.debug("a client has been detected !!");
             //    final ClientRequestManager clientRequestManager = new ClientRequestManager(client);
 
         } catch (Exception ex) {
@@ -118,7 +124,8 @@ public class BackendService extends Thread {
         }
     }
 
-      public static void main (String[] args) throws ParseException, IOException {
+    public static void main(String[] args) throws Exception {
+        //connection pool configuration
 
         serverConfig = new ServerConfig();
         final Options options = new Options();
@@ -126,17 +133,17 @@ public class BackendService extends Thread {
         final Option maxConnection = Option.builder().longOpt("maxConnection").
                 hasArg().argName("maxConnection").build();
         final Option connectionTimeOut = Option.builder().longOpt("connectionTimeOut").
-                  hasArg().argName("connectionTimeOut").build();
+                hasArg().argName("connectionTimeOut").build();
         Option id = new Option("i", "id", true, "id of the person");
         Option name = new Option("n", "name", true, "name of the person");
         Option age = new Option("a", "age", true, "age of the person");
 
-          options.addOption(testMode);
-          options.addOption(maxConnection);
-          options.addOption(connectionTimeOut);
-          options.addOption(id);
-          options.addOption(name);
-          options.addOption(age);
+        options.addOption(testMode);
+        options.addOption(maxConnection);
+        options.addOption(connectionTimeOut);
+        options.addOption(id);
+        options.addOption(name);
+        options.addOption(age);
 
         final CommandLineParser parser = new DefaultParser();
         final CommandLine commandLine = parser.parse(options,  args);
@@ -149,15 +156,17 @@ public class BackendService extends Thread {
         }
         if(commandLine.hasOption("connectionTimeOut")) {
             connectionTimeOutValue = Integer.parseInt(commandLine.getOptionValue("connectionTimeOut"));
-          }
+        }
 
         logger.info("Backend Service is Running...(testMode={}, maxConnection={}, connectionTimeOut={})...", inTestMode, maxConnectionValue,connectionTimeOutValue);
 
-          //connection pool created
-          ds = new DataSource(maxConnectionValue, connectionTimeOutValue);
+        //connection pool created
+        ds = new DataSource(maxConnectionValue, connectionTimeOutValue);
 
-          BackendService service=new BackendService(serverConfig);
-          logger.info("server here");
-          service.start();
+        BackendService service=new BackendService(serverConfig);
+        logger.info("server here");
+        service.start();
+
     }
+
 }
