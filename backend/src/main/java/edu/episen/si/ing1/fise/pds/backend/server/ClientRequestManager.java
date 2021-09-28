@@ -15,7 +15,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class ClientRequestManager implements Runnable {
 
 
-    private final static Logger logger = LoggerFactory.getLogger(ServerConfig.class.getName());
+    private final static Logger logger = LoggerFactory.getLogger(ClientRequestManager.class.getName());
 
     private InputStream inputStream = null;
     private OutputStream outputStream = null;

@@ -1,8 +1,8 @@
 driver: "org.postgresql.Driver"
 password: "admin"
-url: "jdbc:postgresql://172.31.254.93:5432/proto"
+url: "jdbc:postgresql://172.31.249.153:5432/proto"
 username: "postgres"
 
 listenPort: 1111
 soTimeout: 2000
-ip: 172.31.254.94
+ip: 172.31.249.130
