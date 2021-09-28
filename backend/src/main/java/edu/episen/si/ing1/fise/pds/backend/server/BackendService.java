@@ -20,7 +20,10 @@ public class BackendService extends Thread {
     ServerSocket server;
     Socket client;
     public static ServerConfig serverConfig;
-    public static  int max_connection_i = 0, connection_duration_i = 0;
+
+    static boolean inTestMode  = false;
+    static  int maxConnectionValue = 3;
+    static  int connectionTimeOutValue = 3;
 
     public BackendService(final ServerConfig config) {
         try {
@@ -37,7 +40,7 @@ public class BackendService extends Thread {
         PrintWriter out=null;
         BufferedReader in=null;
         this.serve();
-        while(ds.getUsedConnection()<max_connection_i )
+        while(ds.getUsedConnection()<maxConnectionValue )
         {
 
             try {
@@ -51,8 +54,8 @@ public class BackendService extends Thread {
                     System.out.print("connexion number "+(ds.getUsedConnection()+1)+" asking for a/an ");
                     ds.setUsedConnection(ds.getUsedConnection()+1);
                     //interval between each connexion
-                    sleep(connection_duration_i*1000);
-                    if(ds.getUsedConnection()>=max_connection_i ) {
+                    sleep(connectionTimeOutValue*1000);
+                    if(ds.getUsedConnection()>=connectionTimeOutValue ) {
 
                         out.println("Server is occupied!");
                     }
@@ -107,7 +110,7 @@ public class BackendService extends Thread {
     public void serve() {
         try {
             client= server.accept();
-            logger.debug("a client has been detected !!");
+            logger.debug("A client has been detected !!");
             //    final ClientRequestManager clientRequestManager = new ClientRequestManager(client);
 
         } catch (Exception ex) {
@@ -115,20 +118,28 @@ public class BackendService extends Thread {
         }
     }
 
-      public static void main (String[] args) throws ParseException {
+      public static void main (String[] args) throws ParseException, IOException {
 
+        serverConfig = new ServerConfig();
         final Options options = new Options();
         final Option testMode = Option.builder().longOpt("testMode").build();
         final Option maxConnection = Option.builder().longOpt("maxConnection").
                 hasArg().argName("maxConnection").build();
-        options.addOption(testMode);
-        options.addOption(maxConnection);
+        final Option connectionTimeOut = Option.builder().longOpt("connectionTimeOut").
+                  hasArg().argName("connectionTimeOut").build();
+        Option id = new Option("i", "id", true, "id of the person");
+        Option name = new Option("n", "name", true, "name of the person");
+        Option age = new Option("a", "age", true, "age of the person");
+
+          options.addOption(testMode);
+          options.addOption(maxConnection);
+          options.addOption(connectionTimeOut);
+          options.addOption(id);
+          options.addOption(name);
+          options.addOption(age);
 
         final CommandLineParser parser = new DefaultParser();
         final CommandLine commandLine = parser.parse(options,  args);
-
-        boolean inTestMode  = false;
-        int maxConnectionValue = 10;
 
         if(commandLine.hasOption("testMode")) {
             inTestMode = true;
@@ -136,8 +147,17 @@ public class BackendService extends Thread {
         if(commandLine.hasOption("maxConnection")) {
             maxConnectionValue = Integer.parseInt(commandLine.getOptionValue("maxConnection"));
         }
+        if(commandLine.hasOption("connectionTimeOut")) {
+            connectionTimeOutValue = Integer.parseInt(commandLine.getOptionValue("connectionTimeOut"));
+          }
 
-        logger.info("Backend Service is Running...(testMode={}, maxConnection={})...", inTestMode, maxConnectionValue);
+        logger.info("Backend Service is Running...(testMode={}, maxConnection={}, connectionTimeOut={})...", inTestMode, maxConnectionValue,connectionTimeOutValue);
 
+          //connection pool created
+          ds = new DataSource(maxConnectionValue, connectionTimeOutValue);
+
+          BackendService service=new BackendService(serverConfig);
+          logger.info("server here");
+          service.start();
     }
 }

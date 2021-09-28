@@ -30,11 +30,10 @@
 
             <plugin>
                 <artifactId>maven-assembly-plugin</artifactId>
-                <configuration>
+                  <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>edu.episen.si.ing1.fise.pds.backend.server.BackendService</mainClass>
-                            <!--mainClass>edu.si.ing1.pds.vsc.connectionPool.ConnectionMain</mainClass-->
+                            <mainClass>edu.episen.si.ing1.fise.pds.server.backend.server.BackendService</mainClass>
                         </manifest>
                     </archive>
                     <descriptorRefs>
@@ -55,6 +54,13 @@
     </build>
 
     <dependencies>
+
+        <dependency>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-assembly-plugin</artifactId>
+            <version>3.3.0</version>
+            <type>maven-plugin</type>
+        </dependency>
 
     <dependency>
         <groupId>ch.qos.logback</groupId>
