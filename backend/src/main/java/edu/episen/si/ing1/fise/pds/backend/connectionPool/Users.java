@@ -8,6 +8,8 @@ public class Users {
     public int getId() {return this.id;}
     public String getName() {return this.name;}
     public int getAge() {return this.age;}
+
+    public void setId(int id) {this.id=id;}
     public void setName(String n) {this.name=n;}
     public void setAge(int a) {this.age=a;}
 

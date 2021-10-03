@@ -3,6 +3,11 @@ url: "jdbc:postgresql://172.31.249.153:5432/proto"
 username: "postgres"
 password: "admin"
 
+create: "insert into users (name, age) values(?,?)"
+delete: "delete from users where id=?"
+read: "select * from users order by id"
+update: "update users set name=?,age=? where id=?"
+
 listenPort: 1111
 soTimeout: 2000
 ip: 172.31.249.130
