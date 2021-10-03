@@ -72,7 +72,7 @@ public class ConnectionDB {
                         e.printStackTrace();
                 }
                 Random index=new Random();
-                return id_list[index.nextInt(i)];
+                return id_list[index.nextInt(i)+1];
         }
         public String createPerson()
         {
