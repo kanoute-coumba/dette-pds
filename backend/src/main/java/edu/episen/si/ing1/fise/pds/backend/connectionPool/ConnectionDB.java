@@ -50,6 +50,7 @@ public class ConnectionDB {
                 Users user=person.get(index.nextInt(size-1));
                 return user;
         }
+
         public int RandomId()
         {
                 int[] id_list=new int[100];
@@ -72,7 +73,7 @@ public class ConnectionDB {
                         e.printStackTrace();
                 }
                 Random index=new Random();
-                return id_list[index.nextInt(i)+1];
+                return id_list[index.nextInt(i)];
         }
         public String createPerson()
         {

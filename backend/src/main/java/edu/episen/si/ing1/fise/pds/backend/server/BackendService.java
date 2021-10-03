@@ -27,7 +27,7 @@ public class BackendService extends Thread {
     Socket client;
     public static ServerConfig serverConfig;
     static boolean inTestMode  = false;
-    static  int maxConnectionValue = 3;
+    static  int maxConnectionValue = 10;
     static  int connectionTimeOutValue = 3;
 
 
@@ -52,21 +52,20 @@ public class BackendService extends Thread {
             try {
                 in = new BufferedReader(new InputStreamReader(client.getInputStream()));
                 String operation_name=in.readLine();
-                if(operation_name!=null)
-                {
+                if(operation_name!=null) {
                     CrudOperation(operation_name);
-                    out = new PrintWriter(client.getOutputStream(),true);
+                    out = new PrintWriter(client.getOutputStream(), true);
+                    System.out.print("************************************************\n ");
                     out.println(CrudOperation(operation_name));
-                    System.out.print("connexion number "+(ds.getUsedConnection()+1)+" asking for a/an ");
-                    ds.setUsedConnection(ds.getUsedConnection()+1);
+                    System.out.print("connexion number " + (ds.getUsedConnection() + 1) + " asking for a/an ");
+                    ds.setUsedConnection(ds.getUsedConnection() + 1);
                     //interval between each connexion
-                    sleep(connectionTimeOutValue*1000);
-                    if(ds.getUsedConnection()>=maxConnectionValue ) {
+                    sleep(connectionTimeOutValue * 1000);
+                    if (ds.getUsedConnection() >= maxConnectionValue) {
 
                         out.println("Server is occupied!");
                     }
                 }
-                System.out.print("***************************************************************\n ");
             } catch (Exception e1) {
                 // TODO Auto-generated catch block
                 e1.printStackTrace();
@@ -87,6 +86,7 @@ public class BackendService extends Thread {
     {
         ConnectionDB c = ds.takeCon();
         System.out.println(operation_name + " operation :");
+        System.out.print("************************************************\n ");
         String result="";
         switch (operation_name) {
             case "add":
@@ -117,7 +117,6 @@ public class BackendService extends Thread {
         try {
             client= server.accept();
             logger.debug("a client has been detected !!");
-            //    final ClientRequestManager clientRequestManager = new ClientRequestManager(client);
 
         } catch (Exception ex) {
             logger.info("no service available!!");
