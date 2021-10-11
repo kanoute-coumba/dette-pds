@@ -22,7 +22,7 @@ public class BackendService extends Thread {
 
     private final static Logger logger = LoggerFactory.getLogger(BackendService.class.getName());
 
-    public static DataSource ds=new DataSource(5,5);
+    public static DataSource ds=new DataSource(1,1);
     ServerSocket server;
     Socket client;
     public static ServerConfig serverConfig;
@@ -57,7 +57,7 @@ public class BackendService extends Thread {
                     out = new PrintWriter(client.getOutputStream(), true);
                     System.out.print("************************************************\n ");
                     out.println(CrudOperation(operation_name));
-                    System.out.print("connexion number " + (ds.getUsedConnection() + 1) + " asking for a/an ");
+                    System.out.print(" A client " + (ds.getUsedConnection() + 1) + " asking for a/an ");
                     ds.setUsedConnection(ds.getUsedConnection() + 1);
                     //interval between each connexion
                     sleep(connectionTimeOutValue * 1000);
@@ -86,7 +86,7 @@ public class BackendService extends Thread {
     {
         ConnectionDB c = ds.takeCon();
         System.out.println(operation_name + " operation :");
-        System.out.print("************************************************\n ");
+        System.out.println();
         String result="";
         switch (operation_name) {
             case "add":
