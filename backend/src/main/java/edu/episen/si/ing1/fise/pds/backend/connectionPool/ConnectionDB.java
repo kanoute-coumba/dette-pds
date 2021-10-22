@@ -92,9 +92,9 @@ public class ConnectionDB {
                         PreparedStatement pc = connection.prepareStatement(config.getUpdate());
                         Random age=new Random();
                         int id=RandomId();
-                        pc.setString(1,"name_updated_"+age.nextInt(80));
+                        //pc.setString(3,"name_updated_"+age.nextInt(80));
                         pc.setInt(2,age.nextInt(90));
-                        pc.setInt(3,id);
+                        pc.setInt(1,id);
                         int nb = 0;
                         nb = pc.executeUpdate();
                         if(nb!=0)

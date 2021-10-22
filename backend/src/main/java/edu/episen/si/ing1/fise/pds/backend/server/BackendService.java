@@ -27,8 +27,8 @@ public class BackendService extends Thread {
     Socket client;
     public static ServerConfig serverConfig;
     static boolean inTestMode  = false;
-    static  int maxConnectionValue = 10;
-    static  int connectionTimeOutValue = 3;
+    static  int maxConnectionValue = 0;
+    static  int connectionTimeOutValue = 0;
 
 
     public BackendService(final ServerConfig config) {
@@ -63,7 +63,7 @@ public class BackendService extends Thread {
                     sleep(connectionTimeOutValue * 1000);
                     if (ds.getUsedConnection() >= maxConnectionValue) {
 
-                        out.println("Server is occupied!");
+                        out.println(" No connection available !");
                     }
                 }
             } catch (Exception e1) {
@@ -119,7 +119,7 @@ public class BackendService extends Thread {
             logger.debug("a client has been detected !!");
 
         } catch (Exception ex) {
-            logger.info("no service available!!");
+            logger.info("No service available!!");
         }
     }
 

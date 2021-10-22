@@ -6,7 +6,7 @@ password: "admin"
 create: "insert into users (name, age) values(?,?)"
 delete: "delete from users where id=?"
 read: "select * from users order by id"
-update: "update users set name=?,age=? where id=?"
+update: "update users set age=? where id=?"
 
 listenPort: 1111
 soTimeout: 2000
