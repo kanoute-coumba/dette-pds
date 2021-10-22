@@ -23,7 +23,7 @@ public class ConnectionDB {
         {
                 try {
                         ObjectMapper mapper = new ObjectMapper(new YAMLFactory());
-                        config=mapper.readValue(new File(System.getenv(data_smart_city_enVar)), Config.class);
+                        config = mapper.readValue(new File(System.getenv(data_smart_city_enVar)), Config.class);
                         mapper = new ObjectMapper();
                         person = mapper.readValue(new File(System.getenv(crud_script_enVar)), new TypeReference<List<Users>>(){});
                         Class.forName(config.getDriver());
@@ -33,14 +33,6 @@ public class ConnectionDB {
                         e.printStackTrace();
                 }
 
-        }
-
-        public String info()
-        {
-                if(connection != null)
-                        return "connection succed!";
-                else
-                        return "error !";
         }
 
         public Users RandomPerson()

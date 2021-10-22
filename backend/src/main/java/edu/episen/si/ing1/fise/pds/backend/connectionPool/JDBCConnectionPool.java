@@ -14,15 +14,13 @@ public class JDBCConnectionPool {
     public static int getMax_connection() {
         return max_connection;
     }
-
-    public static void setMax_connection(int max_con) {
-        max_connection = max_con;
-    }
-
     public static int getUsed_connection() {
         return used_connection;
     }
 
+    public static void setMax_connection(int max_con) {
+        max_connection = max_con;
+    }
     public static void setUsed_connection(int used_con) {
         used_connection = used_con;
     }
@@ -36,7 +34,7 @@ public class JDBCConnectionPool {
     public synchronized ConnectionDB connectionEntity()
     {
 
-        if(used_connection< max_connection  && collection.size()>0) {
+        if(used_connection < max_connection  && collection.size()>0) {
             ConnectionDB con = collection.get(collection.size()-1);
             used_connection++;
             collection.remove(con);

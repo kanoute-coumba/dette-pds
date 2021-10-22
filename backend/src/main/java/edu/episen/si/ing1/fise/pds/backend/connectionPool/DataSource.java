@@ -11,17 +11,12 @@ public class DataSource {
     {
         return conPool.getMax_connection();
     }
-
     public int getUsedConnection()
     {
         return conPool.getUsed_connection();
     }
-    public void setMaxConnection(int max_con)
-    {
-        conPool.setMax_connection(max_con);
 
-    }
-
+    public void setMaxConnection(int max_con) {conPool.setMax_connection(max_con); }
     public void setUsedConnection(int used_con)
     {
         conPool.setUsed_connection(used_con);
