@@ -45,9 +45,10 @@ public class BackendService extends Thread {
     {
         PrintWriter out=null;
         BufferedReader in=null;
+        this.serve();
 
         while(ds.getUsedConnection()<maxConnectionValue )
-            this.serve();
+
         {
 
             try {
