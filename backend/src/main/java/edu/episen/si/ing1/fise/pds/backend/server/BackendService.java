@@ -85,7 +85,7 @@ public class BackendService extends Thread {
     public String CrudOperation(String operation_name) throws Exception
     {
         ConnectionDB c = ds.takeCon();
-        System.out.println(operation_name + " operation :");
+        //System.out.println(operation_name + " operation :");
         System.out.println();
         String result="";
         switch (operation_name) {
@@ -157,13 +157,13 @@ public class BackendService extends Thread {
             connectionTimeOutValue = Integer.parseInt(commandLine.getOptionValue("connectionTimeOut"));
         }
 
-        logger.info("Backend Service is Running...(testMode={}, maxConnection={}, connectionTimeOut={})...", inTestMode, maxConnectionValue,connectionTimeOutValue);
+        logger.info("Backend Service is Running...(testMode={}, maxConnection={}, connectionTimeOut={})...", inTestMode, maxConnectionValue, connectionTimeOutValue);
 
         //connection pool created
         ds = new DataSource(maxConnectionValue, connectionTimeOutValue);
 
         BackendService service=new BackendService(serverConfig);
-        logger.info("server here");
+        logger.info("Server is running");
         service.start();
 
     }
