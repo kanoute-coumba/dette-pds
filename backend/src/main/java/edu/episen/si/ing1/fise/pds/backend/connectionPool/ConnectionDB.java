@@ -65,7 +65,7 @@ public class ConnectionDB {
                         e.printStackTrace();
                 }
                 Random index=new Random();
-                return id_list[index.nextInt(i)];
+                return id_list[i];
         }
         public String createPerson()
         {
