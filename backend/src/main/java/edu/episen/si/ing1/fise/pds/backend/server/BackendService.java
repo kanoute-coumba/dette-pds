@@ -56,7 +56,7 @@ public class BackendService extends Thread {
                     CrudOperation(operation_name);
                     out = new PrintWriter(client.getOutputStream(), true);
                     System.out.print("************************************************\n ");
-                    out.println(CrudOperation(operation_name));
+                    //out.println(CrudOperation(operation_name));
                     System.out.print(" A client " + (ds.getUsedConnection() + 1) + " asking for a/an ");
                     ds.setUsedConnection(ds.getUsedConnection() + 1);
                     //interval between each connexion
@@ -85,7 +85,7 @@ public class BackendService extends Thread {
     public String CrudOperation(String operation_name) throws Exception
     {
         ConnectionDB c = ds.takeCon();
-        //System.out.println(operation_name + " operation :");
+        System.out.println(operation_name + " operation :");
         System.out.println();
         String result="";
         switch (operation_name) {
