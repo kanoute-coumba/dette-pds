@@ -24,18 +24,19 @@ public class Config {
     public int getSoTimeout() {
         return soTimeout;
     }
+
+    //CRUD
     public String getCreate() {
         return create;
     }
-    public String getRead() {
-        return read;
-    }
+    public String getRead() { return read; }
     public String getUpdate() {
         return update;
     }
     public String getDelete() {
         return delete;
     }
+
     //who have acces read only
     public String getDriver() {
         return driver;

@@ -93,12 +93,12 @@ public class ConnectionDB {
                         Random age=new Random();
                         int id=RandomId();
                         //pc.setString(3,"name_updated_"+age.nextInt(80));
-                        pc.setInt(2,age.nextInt(90));
-                        pc.setInt(1,id);
+                        pc.setInt(1,age.nextInt(90));
+                        pc.setInt(2,id);
                         int nb = 0;
                         nb = pc.executeUpdate();
                         if(nb!=0)
-                                return "The person with the id "+id + " is modified with success!!";
+                                return "The age of person with the id "+id + " is modified with success!!";
                 }catch(SQLException ex)
                 {
                         return "failed with exception !!";
