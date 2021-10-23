@@ -4,7 +4,7 @@ import java.util.*;
 public class JDBCConnectionPool {
 
     //les attributs
-    private ArrayList<ConnectionDB> collection=new ArrayList<ConnectionDB>();
+    private ArrayList<ConnectionDB> collection=new ArrayList<>();
 
     private static int max_connection;
 
@@ -35,7 +35,7 @@ public class JDBCConnectionPool {
     {
 
         if(used_connection<max_connection  && collection.size()>0) {
-            ConnectionDB con = collection.get(collection.size());
+            ConnectionDB con = collection.get(collection.size()-1);
             used_connection++;
             collection.remove(con);
             return con;
