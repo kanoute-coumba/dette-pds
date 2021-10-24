@@ -42,7 +42,7 @@ public class Client extends Thread {
                     System.out.println("*************************************************\n\n");
                 }
             }
-            System.out.println("Server is now occupied!");
+            System.out.println(" No connection available !");
         }catch (Exception ex)
         {
             logger.error("error from client's side ");

@@ -55,9 +55,11 @@ public class BackendService extends Thread {
                     //CrudOperation(operation_name);
                     out = new PrintWriter(client.getOutputStream(), true);
                     System.out.print("************************************************\n ");
-                    System.out.print(" A client " + (ds.getUsedConnection()) + " asking for a/an ");
+                    int clientNbre = 1;
+                    System.out.print(" A client " + clientNbre + " asking for a/an ");
                     out.println(CrudOperation(operation_name));
                     CrudOperation(operation_name);
+                    clientNbre++;
                     //ds.setUsedConnection(ds.getUsedConnection() + 1);
                     //interval between each connexion
                     sleep(connectionTimeOutValue * 1000);

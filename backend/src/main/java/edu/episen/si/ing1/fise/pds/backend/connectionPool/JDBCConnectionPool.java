@@ -31,7 +31,7 @@ public class JDBCConnectionPool {
     	collection.addAll(con);
     }
 
-    public synchronized ConnectionDB connectionEntity() {
+    public synchronized Object connectionEntity() {
 
         while (used_connection <= max_connection*2 && collection.size() > 0) {
             ConnectionDB con = collection.get(collection.size() - 1);
@@ -39,7 +39,7 @@ public class JDBCConnectionPool {
             collection.remove(con);
             return con;
         }
-        return null;
+        return " No connection available ! ";
     }
     public synchronized void returnCon(ConnectionDB con)
     {
