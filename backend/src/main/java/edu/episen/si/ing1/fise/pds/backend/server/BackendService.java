@@ -85,7 +85,7 @@ public class BackendService extends Thread {
     public String CrudOperation(String operation_name) throws Exception
     {
         ConnectionDB c = ds.takeCon();
-        System.out.println(operation_name + " operation :");
+        System.out.println(operation_name + " operation is done with success !!! ");
         System.out.println();
         String result="";
         switch (operation_name) {
@@ -110,7 +110,7 @@ public class BackendService extends Thread {
                 break;
         }
         c.connection.close();
-        return result;
+        return result ;
     }
 
     public void serve() {

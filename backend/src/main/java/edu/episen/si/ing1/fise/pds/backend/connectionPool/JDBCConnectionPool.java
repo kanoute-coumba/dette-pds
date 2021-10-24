@@ -33,7 +33,7 @@ public class JDBCConnectionPool {
 
     public synchronized ConnectionDB connectionEntity() {
 
-        while (used_connection <= max_connection && collection.size() > 0) {
+        while (used_connection <= max_connection*2 && collection.size() > 0) {
             ConnectionDB con = collection.get(collection.size() - 1);
             used_connection++;
             collection.remove(con);
