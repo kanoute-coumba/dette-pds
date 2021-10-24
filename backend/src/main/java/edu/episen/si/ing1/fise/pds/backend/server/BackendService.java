@@ -76,6 +76,7 @@ public class BackendService extends Thread {
             in.close();
             out.close();
             server.close();
+            client.close();
 
         } catch (IOException e) {
             // TODO Auto-generated catch block
@@ -110,7 +111,6 @@ public class BackendService extends Thread {
                 break;
         }
         c.connection.close();
-        ds.closure();
         return result ;
     }
 
