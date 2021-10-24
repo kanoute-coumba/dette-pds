@@ -84,7 +84,7 @@ public class BackendService extends Thread {
     public String CrudOperation(String operation_name) throws Exception
     {
         ConnectionDB c = ds.takeCon();
-        System.out.println(operation_name + " : " );
+        System.out.println(operation_name + " operation : " );
         System.out.println();
         String result="";
         switch (operation_name) {

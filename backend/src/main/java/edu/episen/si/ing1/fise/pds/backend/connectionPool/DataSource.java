@@ -40,7 +40,7 @@ public class DataSource {
     //methods
     public static ConnectionDB takeCon()
     {
-        return (ConnectionDB) conPool.connectionEntity();
+        return conPool.connectionEntity();
     }
     public static void returnCon(ConnectionDB con)
     {
