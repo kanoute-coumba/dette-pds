@@ -31,17 +31,15 @@ public class JDBCConnectionPool {
     	collection.addAll(con);
     }
 
-    public synchronized ConnectionDB connectionEntity()
-    {
+    public synchronized ConnectionDB connectionEntity() {
 
-        if(used_connection<=max_connection  && collection.size()>0) {
-            ConnectionDB con = collection.get(collection.size()-1);
+        while (used_connection <= max_connection && collection.size() > 0) {
+            ConnectionDB con = collection.get(collection.size() - 1);
             used_connection++;
             collection.remove(con);
             return con;
         }
-        else
-            return  null;
+        return null;
     }
     public synchronized void returnCon(ConnectionDB con)
     {
