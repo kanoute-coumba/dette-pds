@@ -63,7 +63,7 @@ public class BackendService extends Thread {
                     sleep(connectionTimeOutValue * 1000);
                     if (ds.getUsedConnection() >= maxConnectionValue) {
 
-                        out.println(" No connection available !");
+                        out.println("Server is occupied!");
                     }
                 }
             } catch (Exception e1) {
@@ -163,7 +163,7 @@ public class BackendService extends Thread {
         ds = new DataSource(maxConnectionValue, connectionTimeOutValue);
 
         BackendService service=new BackendService(serverConfig);
-        logger.info("Server is running");
+        logger.info(" SERVER HERE ! ");
         service.start();
 
     }

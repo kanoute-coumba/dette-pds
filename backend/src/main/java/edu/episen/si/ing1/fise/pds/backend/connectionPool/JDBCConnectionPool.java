@@ -34,7 +34,7 @@ public class JDBCConnectionPool {
     public synchronized ConnectionDB connectionEntity()
     {
 
-        if(used_connection<max_connection  && collection.size()>0) {
+        if(used_connection<=max_connection  && collection.size()>0) {
             ConnectionDB con = collection.get(collection.size()-1);
             used_connection++;
             collection.remove(con);
