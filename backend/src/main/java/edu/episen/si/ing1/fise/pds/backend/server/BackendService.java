@@ -56,15 +56,14 @@ public class BackendService extends Thread {
                     out = new PrintWriter(client.getOutputStream(), true);
                     System.out.print("************************************************\n ");
                     System.out.print(" A client is asking for a/an ");
-                    out.println(operation_name);
+                    //out.println(CrudOperation(operation_name));
                     CrudOperation(operation_name);
-                    //ds.setUsedConnection(ds.getUsedConnection() + 1);
-                    //interval between each connexion
+
                     sleep(connectionTimeOutValue * 1000);
-                    /*if (ds.getUsedConnection() > maxConnectionValue) {
+                    if (ds.getUsedConnection() > maxConnectionValue) {
 
                         out.println("Server is occupied!");
-                    }*/
+                    }
                 }
             } catch (Exception e1) {
                 // TODO Auto-generated catch block
@@ -85,7 +84,7 @@ public class BackendService extends Thread {
     public String CrudOperation(String operation_name) throws Exception
     {
         ConnectionDB c = ds.takeCon();
-        System.out.println(operation_name + " operation is done with success !!! ");
+        System.out.println(operation_name + " : " );
         System.out.println();
         String result="";
         switch (operation_name) {
