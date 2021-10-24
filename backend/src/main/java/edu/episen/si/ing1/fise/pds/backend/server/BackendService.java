@@ -45,15 +45,10 @@ public class BackendService extends Thread {
     {
         PrintWriter out=null;
         BufferedReader in=null;
-
+        this.serve();
         while(ds.getUsedConnection() <= maxConnectionValue)
-
         {
-
             try {
-
-                this.serve();
-
                 in = new BufferedReader(new InputStreamReader(client.getInputStream()));
                 String operation_name=in.readLine();
                 if(operation_name!=null) {
