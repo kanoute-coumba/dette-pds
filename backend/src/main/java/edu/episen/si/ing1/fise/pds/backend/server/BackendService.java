@@ -5,6 +5,7 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.net.SocketException;
 
 import edu.episen.si.ing1.fise.pds.backend.connectionPool.ConnectionDB;
 import edu.episen.si.ing1.fise.pds.backend.connectionPool.DataSource;
@@ -109,6 +110,7 @@ public class BackendService extends Thread {
                 break;
         }
         c.connection.close();
+        ds.closure();
         return result ;
     }
 
@@ -117,7 +119,7 @@ public class BackendService extends Thread {
             client= server.accept();
             logger.debug("a client has been detected !!");
 
-        } catch (Exception ex) {
+        } catch (IOException ex) {
             logger.info("No service available!!");
         }
     }

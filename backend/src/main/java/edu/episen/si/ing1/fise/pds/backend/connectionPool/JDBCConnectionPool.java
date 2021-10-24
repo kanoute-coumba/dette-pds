@@ -46,7 +46,7 @@ public class JDBCConnectionPool {
     	collection.add(con);
     	used_connection--;
     }
-    public synchronized void Close()
+    public synchronized void close()
     {
     	for(ConnectionDB c: collection)
     	{try {

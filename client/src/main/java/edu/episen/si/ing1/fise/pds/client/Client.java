@@ -7,6 +7,7 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.InetAddress;
 import java.net.Socket;
+import java.net.SocketException;
 import java.util.Random;
 
 public class Client extends Thread {
@@ -22,25 +23,27 @@ public class Client extends Thread {
             String msg="";
             PrintWriter out;
             BufferedReader in;
-            int i=0;
-            while(msg!="Server is occupied!" && msg!=null) {
+
+            while(msg!="Server is occupied!") {
                 out = new PrintWriter(client_test.getOutputStream(), true);
                 String operation_name = operation[new Random().nextInt(4)];
                 out.println(operation_name);
                 in = new BufferedReader(new InputStreamReader(client_test.getInputStream()));
                 msg = in.readLine();
-                if(msg==null)
+                if(msg==null) {
+                try
                 {
                     out.close();
                     in.close();
                     client_test.close();
                     break;
                 }
-                else if (msg != "Server is occupied!") {
-                    System.out.println("client  number " + (++i) + " wants an /a " + operation_name + "'s operation\n");
+                catch (SocketException err) { logger.info(" Socket closed : No connection available"); }}
+                //else if (msg != "Server is occupied!") {
+                    System.out.println("New client's connection  wants an/a " + operation_name + "'s operation\n");
                     System.out.println("Server's response\n\n" + msg + "\n");
                     System.out.println("*************************************************\n\n");
-                }
+                //}
             }
             System.out.println(" No connection available !");
         }catch (Exception ex)

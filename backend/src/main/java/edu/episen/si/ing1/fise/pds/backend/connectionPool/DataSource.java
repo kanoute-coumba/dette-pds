@@ -48,7 +48,7 @@ public class DataSource {
     }
     public static void closure()
     {
-        conPool.Close();
+        conPool.close();
     }
 
 }
