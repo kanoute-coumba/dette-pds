@@ -46,7 +46,7 @@ public class BackendService extends Thread {
         PrintWriter out=null;
         BufferedReader in=null;
         this.serve();
-        while(ds.getUsedConnection() <= maxConnectionValue*2)
+        while(ds.getUsedConnection() < maxConnectionValue*2)
         {
             try {
                 in = new BufferedReader(new InputStreamReader(client.getInputStream()));
@@ -56,7 +56,7 @@ public class BackendService extends Thread {
                     out = new PrintWriter(client.getOutputStream(), true);
                     System.out.print("************************************************\n ");
                     System.out.print(" A client is asking for a/an ");
-                    out.println(CrudOperation(operation_name));
+                    out.println(operation_name);
                     CrudOperation(operation_name);
                     //ds.setUsedConnection(ds.getUsedConnection() + 1);
                     //interval between each connexion

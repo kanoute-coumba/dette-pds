@@ -28,7 +28,7 @@ public class DataSource {
         setMaxConnection(max_con);
         connection_interval=con_interv;
         ArrayList<ConnectionDB> cons=new ArrayList<ConnectionDB>();
-        for(int i=0;i<=max_con*2;i++)
+        for(int i=0;i<max_con*2;i++)
         {
             ConnectionDB c=new ConnectionDB();
             cons.add(c);

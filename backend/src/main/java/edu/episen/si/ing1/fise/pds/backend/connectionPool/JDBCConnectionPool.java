@@ -33,7 +33,7 @@ public class JDBCConnectionPool {
 
     public synchronized ConnectionDB connectionEntity() throws NullPointerException {
 
-        while (used_connection <= max_connection*2 && collection.size() > 0) {
+        while (used_connection < max_connection*2 && collection.size() > 0) {
             ConnectionDB con = collection.get(collection.size() - 1);
             used_connection++;
             collection.remove(con);
