@@ -45,19 +45,24 @@ public class BackendService extends Thread {
     {
         PrintWriter out=null;
         BufferedReader in=null;
-        this.serve();
+
         while(ds.getUsedConnection() <= maxConnectionValue)
+
         {
 
             try {
+
+                this.serve();
+
                 in = new BufferedReader(new InputStreamReader(client.getInputStream()));
                 String operation_name=in.readLine();
                 if(operation_name!=null) {
-                    CrudOperation(operation_name);
+                    //CrudOperation(operation_name);
                     out = new PrintWriter(client.getOutputStream(), true);
                     System.out.print("************************************************\n ");
-                    out.println(CrudOperation(operation_name));
                     System.out.print(" A client " + (ds.getUsedConnection()) + " asking for a/an ");
+                    out.println(CrudOperation(operation_name));
+                    CrudOperation(operation_name);
                     //ds.setUsedConnection(ds.getUsedConnection() + 1);
                     //interval between each connexion
                     sleep(connectionTimeOutValue * 1000);
@@ -85,8 +90,8 @@ public class BackendService extends Thread {
     public String CrudOperation(String operation_name) throws Exception
     {
         ConnectionDB c = ds.takeCon();
-        System.out.println(operation_name + " operation :");
-        System.out.println();
+        //System.out.println(operation_name + " operation :");
+        //System.out.println();
         String result="";
         switch (operation_name) {
             case "create":
