@@ -56,7 +56,7 @@ public class BackendService extends Thread {
                     out = new PrintWriter(client.getOutputStream(), true);
                     System.out.print("************************************************\n ");
                     System.out.print(" A client is asking for a/an ");
-                    //out.println(CrudOperation(operation_name));
+                    out.println(CrudOperation(operation_name));
                     CrudOperation(operation_name);
 
                     sleep(connectionTimeOutValue * 1000);
