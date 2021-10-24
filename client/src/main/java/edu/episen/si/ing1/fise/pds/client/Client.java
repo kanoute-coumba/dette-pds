@@ -16,7 +16,7 @@ public class Client extends Thread {
     {
         try
         {
-            String[] operation=new String[] {"add","update","delete","read"};
+            String[] operation=new String[] {"create","delete","read","update"};
             ClientConfig config=new ClientConfig();
             Socket client_test=new Socket(config.getConfig().getIp(),config.getConfig().getListenPort());
             String msg="";
