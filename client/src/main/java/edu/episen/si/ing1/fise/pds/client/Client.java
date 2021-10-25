@@ -38,18 +38,20 @@ public class Client extends Thread {
                     client_test.close();
                     break;
                 }
-                catch (SocketException err) { logger.info(" Socket closed : No connection available"); }}
+                catch (SocketException err) { logger.info(" Socket closed : No connection available");
+                    }
+                }
                 //else if (msg != "Server is occupied!") {
                     System.out.println("New client's connection  wants an/a " + operation_name + "'s operation\n");
                     System.out.println("Server's response\n\n" + msg + "\n");
                     System.out.println("*************************************************\n\n");
                 //}
             }
-            System.out.println(" No connection available !");
+
         }catch (Exception ex)
         {
-            logger.error("error from client's side ");
-            ex.printStackTrace();
+            System.out.println(" No connection available ");
+            //logger.error("error from client's side ");
         }
     }
     private final static Logger logger = LoggerFactory.getLogger(Client.class.getName());
