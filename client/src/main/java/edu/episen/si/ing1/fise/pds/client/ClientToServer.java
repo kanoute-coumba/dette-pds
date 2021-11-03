@@ -27,7 +27,7 @@ public class ClientToServer {
 
     public ClientToServer() {
         try {
-            String serverAddress= "InetAddress.getLocalHost()"; //"172.31.249.130";
+            String serverAddress= "172.31.249.130";
             client=new Socket(serverAddress,1111);
         } catch (Exception e) {
 
