@@ -23,7 +23,7 @@ public class BackendService extends Thread {
 
     private final static Logger logger = LoggerFactory.getLogger(BackendService.class.getName());
 
-    public static DataSource ds=new DataSource(5,5);
+    public static DataSource ds=new DataSource(1,1);
     ServerSocket server;
     Socket client;
     public static ServerConfig serverConfig;
