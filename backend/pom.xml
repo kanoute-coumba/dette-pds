@@ -33,7 +33,8 @@
                   <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>edu.episen.si.ing1.fise.pds.backend.server.BackendService</mainClass>
+                            <!-- <mainClass>edu.episen.si.ing1.fise.pds.backend.server.BackendService</mainClass> -->
+                            <mainClass>edu.episen.si.ing1.fise.pds.backend.server.SmartCityAppServer</mainClass>
                         </manifest>
                     </archive>
                     <descriptorRefs>

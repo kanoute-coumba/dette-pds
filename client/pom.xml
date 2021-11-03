@@ -34,7 +34,8 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>edu.episen.si.ing1.fise.pds.client.Client</mainClass>
+                            <!-- <mainClass>edu.episen.si.ing1.fise.pds.client.Client</mainClass> -->
+                            <mainClass>edu.episen.si.ing1.fise.pds.client.HomePage</mainClass>
                         </manifest>
                     </archive>
                     <descriptorRefs>
