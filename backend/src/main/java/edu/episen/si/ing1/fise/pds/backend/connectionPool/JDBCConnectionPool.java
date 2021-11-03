@@ -4,7 +4,7 @@ import java.util.*;
 public class JDBCConnectionPool {
 
     //les attributs
-    private ArrayList<ConnectionDB> collection=new ArrayList<>();
+    private ArrayList<ConnectionDB> collection=new ArrayList<ConnectionDB>();
 
     private static int max_connection;
 
@@ -14,46 +14,53 @@ public class JDBCConnectionPool {
     public static int getMax_connection() {
         return max_connection;
     }
-    public static int getUsed_connection() {
-        return used_connection;
-    }
 
     public static void setMax_connection(int max_con) {
         max_connection = max_con;
     }
+
+
+    public static int getUsed_connection() {
+        return used_connection;
+    }
+
     public static void setUsed_connection(int used_con) {
         used_connection = used_con;
     }
-    
-  //les methodes
+
+    //le constructeur
+    public JDBCConnectionPool () {}
+
+    //les methodes
     public synchronized void feed(Collection<ConnectionDB> con)
     {
-    	collection.addAll(con);
+        collection.addAll(con);
     }
 
-    public synchronized ConnectionDB connectionEntity() throws NullPointerException {
+    public synchronized ConnectionDB connectionEntity()
+    {
 
-        while (used_connection < max_connection*2 && collection.size() > 0) {
-            ConnectionDB con = collection.get(collection.size() - 1);
+        if(used_connection< max_connection  && collection.size()>0) {
+            ConnectionDB con = collection.get(collection.size()-1);
             used_connection++;
             collection.remove(con);
             return con;
         }
-        return null;
+        else
+            return  null;
     }
     public synchronized void returnCon(ConnectionDB con)
     {
-    	collection.add(con);
-    	used_connection--;
+        collection.add(con);
+        used_connection--;
     }
-    public synchronized void close()
+    public synchronized void Close()
     {
-    	for(ConnectionDB c: collection)
-    	{try {
-			c.connection.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}}
-    	
+        for(ConnectionDB c: collection)
+        {try {
+            c.connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }}
     }
- }
+}

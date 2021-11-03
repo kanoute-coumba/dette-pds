@@ -2,7 +2,6 @@ package edu.episen.si.ing1.fise.pds.backend.connectionPool;
 
 import java.util.ArrayList;
 public class DataSource {
-
     //attributs
     static JDBCConnectionPool conPool=new JDBCConnectionPool ();
     private int connection_interval;
@@ -11,12 +10,17 @@ public class DataSource {
     {
         return conPool.getMax_connection();
     }
+
     public int getUsedConnection()
     {
         return conPool.getUsed_connection();
     }
+    public void setMaxConnection(int max_con)
+    {
+        conPool.setMax_connection(max_con);
 
-    public void setMaxConnection(int max_con) {conPool.setMax_connection(max_con); }
+    }
+
     public void setUsedConnection(int used_con)
     {
         conPool.setUsed_connection(used_con);
@@ -28,7 +32,7 @@ public class DataSource {
         setMaxConnection(max_con);
         connection_interval=con_interv;
         ArrayList<ConnectionDB> cons=new ArrayList<ConnectionDB>();
-        for(int i=0;i<max_con*2;i++)
+        for(int i=0;i<max_con;i++)
         {
             ConnectionDB c=new ConnectionDB();
             cons.add(c);
@@ -48,8 +52,7 @@ public class DataSource {
     }
     public static void closure()
     {
-        conPool.close();
-
+        conPool.Close();
     }
 
 }
