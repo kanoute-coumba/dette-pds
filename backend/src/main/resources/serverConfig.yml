@@ -1,5 +1,5 @@
 driver: "org.postgresql.Driver"
-url: "jdbc:postgresql://172.31.249.153:5432/proto"
+url: "jdbc:postgresql://172.31.249.153:5432/smartcity"
 username: "postgres"
 password: "admin"
 
