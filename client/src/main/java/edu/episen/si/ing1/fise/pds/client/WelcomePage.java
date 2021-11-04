@@ -4,23 +4,12 @@ import edu.episen.si.ing1.fise.pds.client.electroChromaticWindows.Welcome;
 import edu.episen.si.ing1.fise.pds.client.electroChromaticWindows.WindowsTable;
 
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.io.IOException;
-import java.net.InetAddress;
-import java.net.Socket;
-import java.net.URL;
-import java.net.UnknownHostException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Vector;
 
+import java.util.ArrayList;
+import java.util.Map;
 import javax.swing.*;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 import javax.swing.event.MenuEvent;
 import javax.swing.event.MenuListener;
 
@@ -44,9 +33,6 @@ public class WelcomePage extends JFrame {
 
         JPanel p=new JPanel(new BorderLayout());
         JLabel image = new JLabel();
-        ImageIcon  img= new ImageIcon("C:\\Users\\elori\\Downloads\\logo_ja_virtual.png");
-        image.setIcon( new ImageIcon(img.getImage().getScaledInstance(65,65, Image.SCALE_SMOOTH)));
-        image.setHorizontalAlignment(JLabel.CENTER);
         JLabel welcome_sentence = new JLabel("Bienvenue "+company.getCompany_name());
         welcome_sentence.setHorizontalAlignment(JLabel.CENTER);
         welcome_sentence.setFont(new Font("Serif", Font.ITALIC, 20));
@@ -128,11 +114,6 @@ public class WelcomePage extends JFrame {
         });
 
         p=new JPanel(new GridLayout());
-        image = new JLabel();
-        img= new ImageIcon("C:\\Users\\elori\\Downloads\\use_case_icon.png");
-        image.setIcon( new ImageIcon(img.getImage().getScaledInstance(65,65, Image.SCALE_SMOOTH)));
-
-
         JLabel use_case4 = new JLabel("Gestion Accés");
         use_case4.setHorizontalAlignment(JLabel.CENTER);
         use_case4.setFont(new Font("Serif", Font.BOLD,17));

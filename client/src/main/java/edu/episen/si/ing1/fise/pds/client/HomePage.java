@@ -43,7 +43,7 @@ public class HomePage extends JFrame  {
                     if(n.containsValue(company_name))
                     {
                         contains=true;
-                        my_company=new GeneralServices((Integer)n.get("id_generalservices"),company_name);
+                        my_company=new GeneralServices((Integer)n.get("id_gs"),company_name);
 
                     }
                 }
@@ -72,7 +72,7 @@ public class HomePage extends JFrame  {
                 }
                 else
                     JOptionPane.showMessageDialog(new JFrame(),
-                            "Veuillez pr�ciser le nom de votre entreprise!","Nom de l'entreprise non pr�cis�",
+                            "Veuillez préciser le nom de votre entreprise!","Nom de l'entreprise non précisé",
                             JOptionPane.PLAIN_MESSAGE);
             }
 

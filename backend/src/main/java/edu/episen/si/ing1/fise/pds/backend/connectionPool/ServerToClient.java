@@ -30,7 +30,25 @@ public class ServerToClient {
         String response_string = "";
         logger.info("++++++++++++++Send++++++++Response+++++++++++++++++");
 
-        if (request_name.equals("all_rented_workspaces")) {
+        if (request_name.equals("all_generalServices")) {
+            Map data_loading = (Map) request.getData();
+            ResultSet rs1 = connection.createStatement()
+                    .executeQuery("SELECT * FROM generalservices Order by id_gs");
+            List<Map> workSpaces = new ArrayList<Map>();
+            while (rs1.next()) {
+                Map<String, Object> hm = new HashMap<String, Object>();
+                hm.put("id_gs", rs1.getInt("id_gs"));
+                hm.put("company_name", rs1.getString("company_name"));
+                workSpaces.add(hm);
+            }
+            rs1.close();
+            Map<String, Object> response = new HashMap<String, Object>();
+            response.put("name_request", request_name);
+            response.put("data", workSpaces);
+            response_string = mapper.writeValueAsString(response);
+        }
+
+        else if (request_name.equals("all_rented_workspaces")) {
             Map data_loading = (Map) request.getData();
             ResultSet rs1 = connection.createStatement().executeQuery("SELECT * FROM workspace where id_gs="
                     + (Integer) data_loading.get("id_gs") + " Order by id_workspace");
