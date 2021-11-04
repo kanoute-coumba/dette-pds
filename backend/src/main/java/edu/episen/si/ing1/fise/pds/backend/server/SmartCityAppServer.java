@@ -31,9 +31,9 @@ public class SmartCityAppServer extends Thread {
 
     private final static Logger logger = LoggerFactory.getLogger(SmartCityAppServer.class.getName());
 
-    public static DataSource ds=new DataSource(1,1);
+    public static DataSource ds=new DataSource(5,5);
     static boolean inTestMode  = false;
-    static  int maxConnectionValue = 0;
+    static  int maxConnectionValue = 12;
     static  int connectionTimeOutValue = 0;
 
     //ServerSocket server;
