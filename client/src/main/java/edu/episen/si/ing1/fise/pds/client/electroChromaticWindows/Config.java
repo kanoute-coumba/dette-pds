@@ -35,9 +35,6 @@ public class Config extends JFrame implements ActionListener {
     //int id_gs = company.getId_generalservices();
     JTable table1 = new JTable();
 
-    JTable table2 = new JTable();
-
-
     /**
      *
      */
@@ -103,7 +100,7 @@ public class Config extends JFrame implements ActionListener {
                 new Object[][] {
                 },
                 new String[] {
-                        "id_windows", "statut", "temperature", "luminosité", "store", "opacité", "id_equipment"
+                        "id_fenetre", "statut", "temperature", "luminosité", "store", "opacité", "id_equipement"
                 }
         ));
         pan1.add(bouton1);
