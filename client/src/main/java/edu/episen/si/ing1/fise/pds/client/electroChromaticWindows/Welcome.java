@@ -20,6 +20,7 @@ import javax.swing.JPanel;
 
 import edu.episen.si.ing1.fise.pds.client.ClientToServer;
 import edu.episen.si.ing1.fise.pds.client.GeneralServices;
+import edu.episen.si.ing1.fise.pds.client.HomePage;
 
 public class Welcome extends JFrame implements ActionListener{
     Init init ;
@@ -33,6 +34,7 @@ public class Welcome extends JFrame implements ActionListener{
      */
 
     private static final long serialVersionUID = 1L;
+    private HomePage homepage;
 
     public Welcome(GeneralServices gs) {
 
@@ -111,10 +113,14 @@ public class Welcome extends JFrame implements ActionListener{
         JPanel southPanel = new JPanel();
         northPanel.setLayout(new FlowLayout());
         JButton bouton3 = new JButton("Quitter");
+        JButton bouton4 = new JButton("Accueil");
         bouton3.setFont(new Font("Tahoma", Font.PLAIN, 20));
         bouton3.addActionListener(this);
+        bouton4.setFont(new Font("Tahoma", Font.PLAIN, 20));
+        bouton4.addActionListener(this);
 
         southPanel.add(bouton3);
+        southPanel.add(bouton4);
         mainPanel.add(southPanel);
 
         this.setVisible(true);
@@ -126,6 +132,10 @@ public class Welcome extends JFrame implements ActionListener{
         // TODO Auto-generated method stub
         if (e.getActionCommand() == "Quitter") {
             System.exit(0);
+        }
+        if (e.getActionCommand() == "Accueil") {
+            homepage = new HomePage();
+            this.dispose();
         }
         else if (e.getActionCommand() == "Voir mes équipements") {
             ArrayList<Map>ws=WindowsTable.allRentedWorkSpace(connection, company.getId_generalservices());

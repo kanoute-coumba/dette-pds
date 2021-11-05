@@ -96,7 +96,7 @@ public class Init extends JFrame implements ActionListener{
                 new Object[][] {
                 },
                 new String[] {
-                        "id_equipment", "type_equipment", "is_available", "is_working", "id_gs", "id_position"
+                        "id_equipement", "type_equipement", "disponible", "en fonction", "id_gs", "id_position"
                 }
         ));
 
