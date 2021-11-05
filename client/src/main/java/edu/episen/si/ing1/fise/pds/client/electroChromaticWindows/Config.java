@@ -101,7 +101,7 @@ public class Config extends JFrame implements ActionListener {
                 new Object[][] {
                 },
                 new String[] {
-                        "id_windows", "statut", "temperature", "luminosite", "store", "opacite", "id_equipment"
+                        "id_windows", "status", "temperature", "light", "blind", "opacity", "id_equipment"
                 }
         ));
         pan1.add(bouton1);
@@ -112,14 +112,14 @@ public class Config extends JFrame implements ActionListener {
         JPanel pan2 = new JPanel();
         pan2.setLayout(new FlowLayout());
 
-        JButton bouton2 = new JButton("Configurer température");
+        JButton bouton2 = new JButton("Terminer");
         bouton2.setFont(new Font("Tahoma", Font.PLAIN, 20));
         bouton2.addActionListener(this);
-        JButton bouton3 = new JButton("Configurer éclairage");
-        bouton3.setFont(new Font("Tahoma", Font.PLAIN, 20));
-        bouton3.addActionListener(this);
+        //JButton bouton3 = new JButton("Configurer éclairage");
+        //bouton3.setFont(new Font("Tahoma", Font.PLAIN, 20));
+       // bouton3.addActionListener(this);
         pan2.add(bouton2);
-        pan2.add(bouton3);
+        //pan2.add(bouton3);
 
         mainPanel.add(pan2);
 
@@ -129,71 +129,15 @@ public class Config extends JFrame implements ActionListener {
 
         JButton bouton4 = new JButton("Actualiser statut");
         bouton4.setFont(new Font("Tahoma", Font.PLAIN, 20));
-        //bouton4.addActionListener(this);
+        bouton4.addActionListener(this);
 
         table2.setModel(new DefaultTableModel(
                 new Object[][] {
                 },
                 new String[] {
-                        "id_windows", "statut", "temperature", "luminosite", "store", "opacite", "id_equipment"
+                        "id_windows", "status", "temperature", "light", "blind", "opacity", "id_equipment"
                 }
         ));
-
-        bouton4.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-
-                Map window = WindowsTable.getWindow(connection, Windows.selection);
-
-                Integer id_win = (Integer) window.get("id_windows");
-
-                WindowsTable wTab = new WindowsTable ((Integer)window.get("id_windows"),
-                        (String) window.get("status"),(Integer)window.get("temperature"),
-                        (String) window.get("light"),(String)window.get("blind"),
-                        (String)window.get("opacity"),(Integer)window.get("id_equipment") );
-
-                logger.info(" " +wTab.toString());
-
-                Map temperature = TemperatureTable.degreeFromTemperature(connection, id_win);
-                Map light = LightingTable.levelFromLighting(connection, id_win);
-
-                String level = (String) light.get("level");
-
-                int degree = (Integer) temperature.get("degree");
-
-                Boolean update = false ;
-                //System.out.println(degree);
-                switch (level) {
-
-                    case "Aucun":
-                        update = WindowsTable.windowsUpdateForLightLevelAucun(connection, id_win, level);
-                        break;
-                    case "Faible":
-                        update = WindowsTable.windowsUpdateForLightLevelFaible(connection, id_win, level);
-                        break;
-                    case "Moyen":
-                        update = WindowsTable.windowsUpdateForLightLevelMoyen(connection, id_win, level);
-                        break;
-                    case "Fort":
-                        update = WindowsTable.windowsUpdateForLightLevelFort(connection, id_win, level);
-                        break;
-                    default:
-                        update = WindowsTable.windowsUpdateForLightLevelAutre(connection, id_win, level);
-                }
-
-
-                if ( degree < 18 ) {
-                    update = WindowsTable.windowsUpdateForTemperatureDegreeLessThan18(connection, id_win, degree);
-                }
-                else if (degree>=18 && degree<22 ) {
-                    update = WindowsTable.windowsUpdateForTemperatureDegree18_22(connection, id_win, degree);
-                }
-                else {
-                    update = WindowsTable.windowsUpdateForTemperatureDegree22(connection, id_win, degree);
-                }
-
-            }
-
-            });
 
         pan3.add(bouton4);
         pan3.add(table2.getTableHeader());
@@ -243,7 +187,7 @@ public class Config extends JFrame implements ActionListener {
 
         }
 
-        /*else if (e.getActionCommand() == "Configurer éclairage") {
+        else if (e.getActionCommand() == "Terminer") {
 
             Map window = WindowsTable.getWindow(connection, Windows.selection);
             logger.info(" "+window);
@@ -264,27 +208,49 @@ public class Config extends JFrame implements ActionListener {
             String level = (String) light.get("level");
             System.out.println(level.toString());
 
-            Boolean update = false;
+            //Map window = WindowsTable.getWindow(connection, Windows.selection);
+
+            //Integer id_win = (Integer) window.get("id_windows");
+
+            Map temperature = TemperatureTable.degreeFromTemperature(connection, id_win);
+
+            int degree = (Integer) temperature.get("degree");
+            System.out.println(degree);
+
+            Boolean update1 = false ;
+            Boolean update2 = false ;
+
+            if ( degree < 18 ) {
+                update1 = WindowsTable.windowsUpdateForTemperatureDegreeLessThan18(connection, id_win, degree);
+            }
+            else if (degree>=18 && degree<22 ) {
+                update1 = WindowsTable.windowsUpdateForTemperatureDegree18_22(connection, id_win, degree);
+            }
+            else {
+                update1 = WindowsTable.windowsUpdateForTemperatureDegree22(connection, id_win, degree);
+            }
+
+            //Boolean update = false;
 
             switch (level) {
 
                 case "Aucun":
-                    update = WindowsTable.windowsUpdateForLightLevelAucun(connection, id_win, level);
+                    update2 = WindowsTable.windowsUpdateForLightLevelAucun(connection, id_win, level);
                     break;
                 case "Faible":
-                    update = WindowsTable.windowsUpdateForLightLevelFaible(connection, id_win, level);
+                    update2 = WindowsTable.windowsUpdateForLightLevelFaible(connection, id_win, level);
                     break;
                 case "Moyen":
-                    update = WindowsTable.windowsUpdateForLightLevelMoyen(connection, id_win, level);
+                    update2 = WindowsTable.windowsUpdateForLightLevelMoyen(connection, id_win, level);
                     break;
                 case "Fort":
-                    update = WindowsTable.windowsUpdateForLightLevelFort(connection, id_win, level);
+                    update2 = WindowsTable.windowsUpdateForLightLevelFort(connection, id_win, level);
                     break;
                 default:
-                    update = WindowsTable.windowsUpdateForLightLevelAutre(connection, id_win, level);
+                    update2 = WindowsTable.windowsUpdateForLightLevelAutre(connection, id_win, level);
             }
 
-            if(update==true) {
+            if(update1==true ||update2==true) {
                 JOptionPane.showMessageDialog(new JFrame(),
                         " Configuration terminée ! ",
                         " Succès ",
@@ -301,7 +267,7 @@ public class Config extends JFrame implements ActionListener {
 
         }
 
-        else if (e.getActionCommand() == "Configurer température") {
+        /* else if (e.getActionCommand() == "Configurer température") {
 
             Map window = WindowsTable.getWindow(connection, Windows.selection);
 
@@ -324,7 +290,7 @@ public class Config extends JFrame implements ActionListener {
                 update = WindowsTable.windowsUpdateForTemperatureDegree22(connection, id_win, degree);
             }
 
-            if (update==true) {
+            /*if (update==true) {
                 JOptionPane.showMessageDialog(new JFrame(),
                         " Configuration terminée ! ",
                         " Succès ",
@@ -336,8 +302,8 @@ public class Config extends JFrame implements ActionListener {
                         " Echec ",
                         JOptionPane.PLAIN_MESSAGE);
             }
-        } */
-
+        }
+*/
         else if (e.getActionCommand() == "Actualiser statut") {
 
             ArrayList<Map> rs4 = WindowsTable.windowsUpdatedStatus(connection, Windows.selection);
