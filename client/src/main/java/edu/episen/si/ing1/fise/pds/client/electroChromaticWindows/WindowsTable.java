@@ -390,28 +390,6 @@ public class WindowsTable {
 
     }
 
-    public static ArrayList<Map> windowsUpdatedStatus(ClientToServer connection, int choice)
-    {
-        ArrayList<Map>updatedStatus=new ArrayList<Map>();
-        //choice = Windows.selection;
-        try
-        {
-            if(connection.client.isClosed())
-                connection = new ClientToServer();
-            Request request=new Request();
-            request.setName_request("updated_status");
-            HashMap<String,Object>param=new HashMap<String,Object>();
-            param.put("id_windows", choice);
-            request.setData(param);
-            Request response=connection.SendRequest(request);
-            updatedStatus=(ArrayList<Map>)response.getData();
-        }catch(Exception e)
-        {
-            logger.info("Server is maybe occupied");
-        }
-        return updatedStatus;
-    }
-
     static public ArrayList<Map> allRentedWorkSpace(ClientToServer connection, int id_gs)
     {
         ArrayList<Map>myworkspaces=new ArrayList<Map>();

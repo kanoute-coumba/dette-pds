@@ -130,38 +130,39 @@ public class Config extends JFrame implements ActionListener {
 
                 int degree = (Integer) temperature.get("degree");
 
-                Boolean update = false ;
+                Boolean update1 = false ;
+                Boolean update2 = false ;
                 //System.out.println(degree);
                 switch (level) {
 
                     case "Aucun":
-                        update = WindowsTable.windowsUpdateForLightLevelAucun(connection, id_win, level);
+                        update1 = WindowsTable.windowsUpdateForLightLevelAucun(connection, id_win, level);
                         break;
                     case "Faible":
-                        update = WindowsTable.windowsUpdateForLightLevelFaible(connection, id_win, level);
+                        update1 = WindowsTable.windowsUpdateForLightLevelFaible(connection, id_win, level);
                         break;
                     case "Moyen":
-                        update = WindowsTable.windowsUpdateForLightLevelMoyen(connection, id_win, level);
+                        update1 = WindowsTable.windowsUpdateForLightLevelMoyen(connection, id_win, level);
                         break;
                     case "Fort":
-                        update = WindowsTable.windowsUpdateForLightLevelFort(connection, id_win, level);
+                        update1 = WindowsTable.windowsUpdateForLightLevelFort(connection, id_win, level);
                         break;
                     default:
-                        update = WindowsTable.windowsUpdateForLightLevelAutre(connection, id_win, level);
+                        update1 = WindowsTable.windowsUpdateForLightLevelAutre(connection, id_win, level);
                 }
 
 
                 if ( degree < 18 ) {
-                    update = WindowsTable.windowsUpdateForTemperatureDegreeLessThan18(connection, id_win, degree);
+                    update1 = WindowsTable.windowsUpdateForTemperatureDegreeLessThan18(connection, id_win, degree);
                 }
                 else if (degree>=18 && degree<22 ) {
-                    update = WindowsTable.windowsUpdateForTemperatureDegree18_22(connection, id_win, degree);
+                    update2 = WindowsTable.windowsUpdateForTemperatureDegree18_22(connection, id_win, degree);
                 }
                 else {
-                    update = WindowsTable.windowsUpdateForTemperatureDegree22(connection, id_win, degree);
+                    update2 = WindowsTable.windowsUpdateForTemperatureDegree22(connection, id_win, degree);
                 }
 
-                if(update==true) {
+                if(update1==true || update2==true) {
                     JOptionPane.showMessageDialog(new JFrame(),
                             " Configuration terminée ! ",
                             " Succès ",
