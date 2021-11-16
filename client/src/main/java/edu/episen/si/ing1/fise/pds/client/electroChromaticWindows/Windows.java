@@ -152,6 +152,8 @@ public class Windows extends JFrame implements ActionListener{
             this.dispose();
         }
         else if (e.getActionCommand() == "Charger mes fenetres") {
+            String isAvailable;
+            String isWorking;
             ArrayList<Map> rs1 = WindowsTable.ownWindows(connection, company.getId_generalservices());
 
             if (rs1.isEmpty()) {
@@ -176,11 +178,17 @@ public class Windows extends JFrame implements ActionListener{
                     String id_equipment = String.valueOf((int) n.get("id_equipment"));
                     String type_equipment = (String) n.get("type_equipment");
                     String is_available = String.valueOf((boolean) n.get("is_available"));
+                    if (is_available=="true")
+                        isAvailable= "oui" ;
+                    else isAvailable= "non";
                     String is_working = String.valueOf((boolean) n.get("is_working"));
+                    if (is_working=="true")
+                        isWorking= "oui" ;
+                    else isWorking= "non";
                     String id_gs = String.valueOf((int) n.get("id_gs"));
                     String id_position = String.valueOf((int) n.get("id_position"));
 
-                    String [] data = {id_equipment, type_equipment, is_available, is_working, id_gs, id_position};
+                    String [] data = {id_equipment, type_equipment, isAvailable, isWorking, id_gs, id_position};
                     DefaultTableModel tblModel = (DefaultTableModel) table.getModel();
 
 

@@ -33,7 +33,7 @@ public class ServerToClient {
         if (request_name.equals("all_generalServices")) {
             Map data_loading = (Map) request.getData();
             ResultSet rs1 = connection.createStatement()
-                    .executeQuery("SELECT * FROM generalservices Order by id_gs");
+                    .executeQuery("SELECT * FROM generalservices Order by company_name");
             List<Map> workSpaces = new ArrayList<Map>();
             while (rs1.next()) {
                 Map<String, Object> hm = new HashMap<String, Object>();

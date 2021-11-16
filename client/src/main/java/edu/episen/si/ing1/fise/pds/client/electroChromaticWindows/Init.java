@@ -166,6 +166,8 @@ public class Init extends JFrame implements ActionListener{
         }
         else if(e.getActionCommand() == "Charger mes équipements") {
 
+            String isAvailable;
+            String isWorking;
             ArrayList<Map> rs = WindowsTable.ownEquipment(connection, company.getId_generalservices());
 
             if (rs.isEmpty()) {
@@ -181,7 +183,6 @@ public class Init extends JFrame implements ActionListener{
                         JOptionPane.ERROR_MESSAGE);
             }
             else {
-
                 try
                 {
                     connection.client.close();
@@ -197,12 +198,18 @@ public class Init extends JFrame implements ActionListener{
                     String id_equipment = String.valueOf((int) n.get("id_equipment"));
                     String type_equipment = (String) n.get("type_equipment");
                     String is_available = String.valueOf((boolean) n.get("is_available"));
+                    if (is_available=="true")
+                        isAvailable= "oui" ;
+                    else isAvailable= "non";
                     String is_working = String.valueOf((boolean) n.get("is_working"));
+                    if (is_working=="true")
+                        isWorking= "oui" ;
+                    else isWorking= "non";
                     String id_gs = String.valueOf((int) n.get("id_gs"));
                     String id_position = String.valueOf((int) n.get("id_position"));
 
 
-                    String [] data = {id_equipment, type_equipment, is_available, is_working, id_gs, id_position};
+                    String [] data = {id_equipment, type_equipment, isAvailable, isWorking, id_gs, id_position};
                     DefaultTableModel tblModel = (DefaultTableModel) table.getModel();
 
 
