@@ -239,9 +239,9 @@ public class Config extends JFrame implements ActionListener {
                 String id_windows = String.valueOf((int) n.get("id_windows"));
                 String status = (String) n.get("status");
                 String temperature = String.valueOf((int) n.get("temperature"));
-                String light = (String) n.get("light");
+                String light = String.valueOf((int) n.get("light"));
                 String blind = (String) n.get("blind");
-                String opacity = (String) n.get("opacity");
+                String opacity = String.valueOf((int) n.get("opacity"));
                 String id_equipment = String.valueOf((int) n.get("id_equipment"));
                 String idConf = String.valueOf((int) n.get("idConf"));
 
