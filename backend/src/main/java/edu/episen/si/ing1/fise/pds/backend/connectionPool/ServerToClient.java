@@ -462,6 +462,30 @@ public class ServerToClient {
             response_string = mapper.writeValueAsString(response);
         }
 
+        else if (request_name.equals("default_conf")) {
+            Map data_loading = (Map) request.getData();
+            ResultSet rs1 = connection.createStatement().executeQuery("SELECT * FROM WindowsPreConf WHERE idConf = "
+                    + (Integer) data_loading.get("idConf") + " ORDER BY idConf");
+            List<Map> preConf = new ArrayList<Map>();
+            while (rs1.next()) {
+                Map<String, Object> hm = new HashMap<String, Object>();
+                hm.put("idConf", rs1.getInt("idConf"));
+                hm.put("openValue", rs1.getString("openValue"));
+                hm.put("reducedValue", rs1.getBoolean("reducedValue"));
+                hm.put("closedValue", rs1.getBoolean("closedValue"));
+                hm.put("anyTinted", rs1.getInt("anyTinted"));
+                hm.put("weakTinted", rs1.getInt("weakTinted"));
+                hm.put("halfTinted", rs1.getInt("halfTinted"));
+                hm.put("fullTinted", rs1.getInt("fullTinted"));
+                preConf.add(hm);
+            }
+            rs1.close();
+            Map<String, Object> response = new HashMap<String, Object>();
+            response.put("name_request", request_name);
+            response.put("data", preConf);
+            response_string = mapper.writeValueAsString(response);
+        }
+
         data_source.returnCon(con);
         return response_string;
     }
