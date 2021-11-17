@@ -111,6 +111,16 @@ public class Config extends JFrame implements ActionListener {
 
         bouton4.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                try
+                {
+                    connection.client.close();
+
+
+                }
+                catch(Exception e1)
+                {
+
+                }
 
                 Map window = WindowsTable.getWindow(connection, Windows.selection);
 

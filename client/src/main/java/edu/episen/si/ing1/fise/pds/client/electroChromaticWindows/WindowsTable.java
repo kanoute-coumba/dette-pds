@@ -401,6 +401,8 @@ public class WindowsTable {
         ArrayList<Map>myworkspaces=new ArrayList<Map>();
         try
         {
+            if(connection.client.isClosed())
+                connection = new ClientToServer();
             Request request=new Request();
             request.setName_request("all_rented_workspaces");
             HashMap<String,Object>param=new HashMap<String,Object>();
