@@ -149,9 +149,9 @@ public class ServerToClient {
                 hm.put("id_windows", rs1.getInt("id_windows"));
                 hm.put("status", rs1.getString("status"));
                 hm.put("temperature", rs1.getInt("temperature"));
-                hm.put("light", rs1.getString("light"));
+                hm.put("light", rs1.getInt("light"));
                 hm.put("blind", rs1.getString("blind"));
-                hm.put("opacity", rs1.getString("opacity"));
+                hm.put("opacity", rs1.getInt("opacity"));
                 hm.put("id_equipment", rs1.getInt("id_equipment"));
                 hm.put("idConf", rs1.getInt("idConf"));
                 window.add(hm);

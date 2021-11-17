@@ -13,6 +13,8 @@ public class LightingTable {
     private final static Logger logger = LoggerFactory.getLogger(LightingTable.class.getName());
 
     private int id_light;
+    private int intensity;
+    private int id_windows;
     private String level;
 
     public int getIntensity() {
@@ -22,9 +24,6 @@ public class LightingTable {
     public void setIntensity(int intensity) {
         this.intensity = intensity;
     }
-
-    private int intensity;
-    private int id_windows;
 
     public int getId_light() {
         return id_light;

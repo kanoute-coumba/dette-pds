@@ -44,7 +44,7 @@ public class Config extends JFrame implements ActionListener {
     public Config(GeneralServices gs) {
         super();
         company = gs;
-        this.setSize(900,600);
+        this.setSize(1200,600);
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
@@ -100,7 +100,7 @@ public class Config extends JFrame implements ActionListener {
                 new Object[][] {
                 },
                 new String[] {
-                        "id_fenetre", "statut", "temperature", "luminosité", "store", "opacité", "id_equipement", "id_conf"
+                        "id_fenetre", "statut", "temperature", "luminosité (en lux)", "store", "opacité(en %)", "id_equipement", "id_conf"
                 }
         ));
         pan1.add(bouton1);
@@ -117,8 +117,8 @@ public class Config extends JFrame implements ActionListener {
                 Integer id_win = (Integer) window.get("id_windows");
 
                 WindowsTable wTab = new WindowsTable ((Integer)window.get("id_windows"),
-                        (String) window.get("status"),(Integer)window.get("temperature"),
-                        (Integer) window.get("light"),(String)window.get("blind"),
+                        (String)window.get("status"),(Integer)window.get("temperature"),
+                        (Integer)window.get("light"),(String)window.get("blind"),
                         (Integer)window.get("opacity"),(Integer)window.get("id_equipment"),
                         (Integer)window.get("idConf") );
 
