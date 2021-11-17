@@ -472,12 +472,12 @@ public class ServerToClient {
             List<Map> values = new ArrayList<Map>();
             while (rs1.next()) {
                 Map<String, Object> hm = new HashMap<String, Object>();
-                hm.put("idConf", rs1.getInt("idConf"));
-                hm.put("openValue", rs1.getString("openValue"));
-                hm.put("reducedValue", rs1.getBoolean("reducedValue"));
-                hm.put("lowIntensity", rs1.getInt("lowIntensity"));
-                hm.put("mediumIntensity", rs1.getInt("mediumIntensity"));
-                hm.put("highIntensity", rs1.getInt("highIntensity"));
+                hm.put("idConf", rs1.getInt("idconf"));
+                hm.put("openValue", rs1.getInt("openvalue"));
+                hm.put("reducedValue", rs1.getInt("reducedvalue"));
+                hm.put("lowIntensity", rs1.getInt("lowintensity"));
+                hm.put("mediumIntensity", rs1.getInt("mediumintensity"));
+                hm.put("highIntensity", rs1.getInt("highintensity"));
                 values.add(hm);
             }
             rs1.close();
