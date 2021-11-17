@@ -44,7 +44,7 @@ public class Config extends JFrame implements ActionListener {
     public Config(GeneralServices gs) {
         super();
         company = gs;
-        this.setSize(1200,600);
+        this.setSize(1000,600);
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
@@ -100,7 +100,7 @@ public class Config extends JFrame implements ActionListener {
                 new Object[][] {
                 },
                 new String[] {
-                        "id_fenetre", "statut", "temperature", "luminosité (en lux)", "store", "opacité(en %)", "id_equipement", "id_conf"
+                        "id_fenetre", "statut", "temperature", "luminosité(en lux)", "store", "opacité(en %)", "id_equipement", "id_conf"
                 }
         ));
         pan1.add(bouton1);
@@ -150,22 +150,20 @@ public class Config extends JFrame implements ActionListener {
                 int mediumIntensity = (Integer) values.get("mediumIntensity");
                 int highIntensity = (Integer) values.get("highIntensity");
 
-                Boolean update1;
+                Boolean update1 = false ;
+                Boolean update2 = false ;
 
-                if ( degree < openValue ) {
+                if ( degree <= openValue ) {
                     update1 = WindowsTable.windowsUpdateForTemperatureDegreeLessThan18(connection, id_win, degree);
                 }
                 else if (degree>openValue && degree<reducedValue ) {
                     update1 = WindowsTable.windowsUpdateForTemperatureDegree18_22(connection, id_win, degree);
                 }
-                else {
+                else if (degree>=reducedValue){
                     update1 = WindowsTable.windowsUpdateForTemperatureDegree22(connection, id_win, degree);
                 }
 
-                Boolean update2 = false ;
-
-
-                if (lux < lowIntensity) {
+                else if (lux < lowIntensity) {
                     int opacity= 100*lux/lowIntensity-50;
                     update2 = WindowsTable.windowsUpdateForLightLevelAucun(connection, id_win, lux, opacity);
                 }
