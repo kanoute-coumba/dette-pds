@@ -14,6 +14,16 @@ public class LightingTable {
 
     private int id_light;
     private String level;
+
+    public int getIntensity() {
+        return intensity;
+    }
+
+    public void setIntensity(int intensity) {
+        this.intensity = intensity;
+    }
+
+    private int intensity;
     private int id_windows;
 
     public int getId_light() {
@@ -40,10 +50,10 @@ public class LightingTable {
         this.id_windows = id_windows;
     }
 
-    public LightingTable(int id_light, String level, int id_windows) {
+    public LightingTable(int id_light, int intensity, int id_windows) {
         super();
         this.id_light = id_light;
-        this.level = level;
+        this.intensity = intensity;
         this.id_windows = id_windows;
     }
 
@@ -71,6 +81,32 @@ public class LightingTable {
             return null;
         else
             return level.get(0);
+    }
+
+    public static Map getIntensity(ClientToServer connection, int choice)
+    {
+        ArrayList<Map> intensity =new ArrayList<Map>();
+        //choice = Windows.selection;
+        try
+        {
+            if(connection.client.isClosed())
+                connection = new ClientToServer();
+            Request request=new Request();
+            request.setName_request("get_intensity");
+            HashMap<String,Object>param=new HashMap<String,Object>();
+            param.put("id_windows", choice);
+            request.setData(param);
+            Request response=connection.SendRequest(request);
+            intensity =(ArrayList<Map>)response.getData();
+        }catch(Exception e)
+        {
+            e.printStackTrace();
+            logger.info("Server is maybe occupied");
+        }
+        if(intensity.isEmpty())
+            return null;
+        else
+            return intensity.get(0);
     }
 
 }

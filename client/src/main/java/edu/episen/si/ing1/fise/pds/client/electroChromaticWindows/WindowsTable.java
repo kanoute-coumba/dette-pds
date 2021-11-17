@@ -22,6 +22,7 @@ public class WindowsTable {
     private String blind;
     private String opacity;
     private int id_equipment;
+    private int idConf ;
     GeneralServices company=null;
 
 
@@ -68,7 +69,7 @@ public class WindowsTable {
         this.id_equipment = id_equipment;
     }
 
-    public WindowsTable(int id_windows, String status, int temperature, String light, String blind, String opacity, int id_equipment) {
+    public WindowsTable(int id_windows, String status, int temperature, String light, String blind, String opacity, int id_equipment, int idConf) {
         super();
         this.id_windows = id_windows;
         this.status = status;
@@ -77,6 +78,7 @@ public class WindowsTable {
         this.blind = blind;
         this.opacity = opacity;
         this.id_equipment = id_equipment;
+        this.idConf = idConf;
 
     }
 
@@ -174,7 +176,7 @@ public class WindowsTable {
         return defaultStatus;
     }
 
-    public static boolean windowsUpdateForLightLevelAucun(ClientToServer connection, int choice, String level)
+    public static boolean windowsUpdateForLightLevelAucun(ClientToServer connection, int choice, int level, int opacity)
     {
         ArrayList<Map>none1=new ArrayList<Map>();
         //Windows.selection = choice ;
@@ -187,6 +189,7 @@ public class WindowsTable {
             HashMap<String,Object>param=new HashMap<String,Object>();
             param.put("id_windows", choice);
             param.put("light", level);
+            param.put("opacity", opacity);
             request.setData(param);
             Request response=connection.SendRequest(request);
             none1=(ArrayList<Map>)response.getData();
@@ -201,7 +204,7 @@ public class WindowsTable {
             return false ; //(boolean)none1.get(0).get("not_done");
     }
 
-    public static boolean windowsUpdateForLightLevelFaible(ClientToServer connection, int choice, String level)
+    public static boolean windowsUpdateForLightLevelFaible(ClientToServer connection, int choice, int level, int opacity)
     {
         ArrayList<Map>none2=new ArrayList<Map>();
         //Windows.selection = choice ;
@@ -214,6 +217,7 @@ public class WindowsTable {
             HashMap<String,Object>param=new HashMap<String,Object>();
             param.put("id_windows", choice);
             param.put("light", level);
+            param.put("opacity", opacity);
             request.setData(param);
             Request response=connection.SendRequest(request);
             none2=(ArrayList<Map>)response.getData();
@@ -228,7 +232,7 @@ public class WindowsTable {
 
     }
 
-    public static boolean windowsUpdateForLightLevelMoyen(ClientToServer connection, int choice, String level)
+    public static boolean windowsUpdateForLightLevelMoyen(ClientToServer connection, int choice, int level, int opacity)
     {
         ArrayList<Map>none3=new ArrayList<Map>();
         //Windows.selection = choice ;
@@ -241,6 +245,7 @@ public class WindowsTable {
             HashMap<String,Object>param=new HashMap<String,Object>();
             param.put("id_windows", choice);
             param.put("light", level);
+            param.put("opacity", opacity);
             request.setData(param);
             Request response=connection.SendRequest(request);
             none3=(ArrayList<Map>)response.getData();
@@ -255,7 +260,7 @@ public class WindowsTable {
 
     }
 
-    public static boolean windowsUpdateForLightLevelFort(ClientToServer connection, int choice, String level)
+    public static boolean windowsUpdateForLightLevelFort(ClientToServer connection, int choice, int level, int opacity)
     {
         ArrayList<Map>none4=new ArrayList<Map>();
         //Windows.selection = choice ;
@@ -268,6 +273,7 @@ public class WindowsTable {
             HashMap<String,Object>param=new HashMap<String,Object>();
             param.put("id_windows", choice);
             param.put("light", level);
+            param.put("opacity", opacity);
             request.setData(param);
             Request response=connection.SendRequest(request);
             none4=(ArrayList<Map>)response.getData();
@@ -282,7 +288,7 @@ public class WindowsTable {
 
     }
 
-    public static boolean windowsUpdateForLightLevelAutre(ClientToServer connection, int choice, String level)
+    public static boolean windowsUpdateForLightLevelAutre(ClientToServer connection, int choice, int level)
     {
         ArrayList<Map>none5=new ArrayList<Map>();
         //choice = Windows.selection;

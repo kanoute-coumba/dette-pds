@@ -14,21 +14,21 @@ public class WindowsPreConf {
     private int openValue;
     private int reducedValue;
     private int closedValue;
-    private int anyTinted;
-    private int weakTinted;
-    private int halfTinted;
-    private int fullTinted;
+    private int noIntensity;
+    private int lowIntensity;
+    private int mediumIntensity;
+    private int highIntensity;
     private final static Logger logger = LoggerFactory.getLogger(WindowsTable.class.getName());
 
-    public WindowsPreConf(int idConf, int openValue, int reducedValue, int closedValue, int anyTinted, int weakTinted, int halfTinted, int fullTinted) {
+    public WindowsPreConf(int idConf, int openValue, int reducedValue, int closedValue, int noIntensity, int lowIntensity, int mediumIntensity, int highIntensity) {
         this.idConf = idConf;
         this.openValue = openValue;
         this.reducedValue = reducedValue;
         this.closedValue = closedValue;
-        this.anyTinted = anyTinted;
-        this.weakTinted = weakTinted;
-        this.halfTinted = halfTinted;
-        this.fullTinted = fullTinted;
+        this.noIntensity = noIntensity;
+        this.lowIntensity = lowIntensity;
+        this.mediumIntensity = mediumIntensity;
+        this.highIntensity = highIntensity;
     }
 
     public int getIdConf() {
@@ -63,36 +63,36 @@ public class WindowsPreConf {
         this.closedValue = closedValue;
     }
 
-    public int getAnyTinted() {
-        return anyTinted;
+    public int getNoIntensity() {
+        return noIntensity;
     }
 
-    public void setAnyTinted(int anyTinted) {
-        this.anyTinted = anyTinted;
+    public void setNoIntensity(int noIntensity) {
+        this.noIntensity = noIntensity;
     }
 
-    public int getWeakTinted() {
-        return weakTinted;
+    public int getLowIntensity() {
+        return lowIntensity;
     }
 
-    public void setWeakTinted(int weakTinted) {
-        this.weakTinted = weakTinted;
+    public void setLowIntensity(int lowIntensity) {
+        this.lowIntensity = lowIntensity;
     }
 
-    public int getHalfTinted() {
-        return halfTinted;
+    public int getMediumIntensity() {
+        return mediumIntensity;
     }
 
-    public void setHalfTinted(int halfTinted) {
-        this.halfTinted = halfTinted;
+    public void setMediumIntensity(int mediumIntensity) {
+        this.mediumIntensity = mediumIntensity;
     }
 
-    public int getFullTinted() {
-        return fullTinted;
+    public int getHighIntensity() {
+        return highIntensity;
     }
 
-    public void setFullTinted(int fullTinted) {
-        this.fullTinted = fullTinted;
+    public void setHighIntensity(int highIntensity) {
+        this.highIntensity = highIntensity;
     }
 
     @Override
@@ -102,31 +102,33 @@ public class WindowsPreConf {
                 ", openValue=" + openValue +
                 ", reducedValue=" + reducedValue +
                 ", closedValue=" + closedValue +
-                ", anyTinted=" + anyTinted +
-                ", weakTinted=" + weakTinted +
-                ", halfTinted=" + halfTinted +
-                ", fullTinted=" + fullTinted +
+                ", noIntensity=" + noIntensity +
+                ", lowIntensity=" + lowIntensity +
+                ", mediumIntensity=" + mediumIntensity +
+                ", highIntensity=" + highIntensity +
                 '}';
     }
 
-    public static ArrayList<Map> windowsPreconf(ClientToServer connection, int idConf)
+    public static Map getValues(ClientToServer connection, int idConf)
     {
-        ArrayList<Map> preConf =new ArrayList<Map>();
+        ArrayList<Map> value =new ArrayList<Map>();
       try
         {
             if(connection.client.isClosed())
                 connection = new ClientToServer();
             Request request=new Request();
-            request.setName_request("default_conf");
+            request.setName_request("get_values");
             HashMap<String,Object> param=new HashMap<String,Object>();
             param.put("idConf", idConf);
             request.setData(param);
             Request response=connection.SendRequest(request);
-            preConf=(ArrayList<Map>)response.getData();
+            value=(ArrayList<Map>)response.getData();
         }catch(Exception e)
         {
             logger.info("Server is maybe occupied");
-        }
-        return preConf;
+        }if(value.isEmpty())
+        return null;
+    else
+        return value.get(0);
     }
 }

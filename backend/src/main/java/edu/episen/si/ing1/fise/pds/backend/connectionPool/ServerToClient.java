@@ -129,6 +129,7 @@ public class ServerToClient {
                 hm.put("blind", rs1.getString("blind"));
                 hm.put("opacity", rs1.getString("opacity"));
                 hm.put("id_equipment", rs1.getInt("id_equipment"));
+                hm.put("idConf", rs1.getInt("idConf"));
                 windowStatus.add(hm);
             }
             rs1.close();
@@ -152,6 +153,7 @@ public class ServerToClient {
                 hm.put("blind", rs1.getString("blind"));
                 hm.put("opacity", rs1.getString("opacity"));
                 hm.put("id_equipment", rs1.getInt("id_equipment"));
+                hm.put("idConf", rs1.getInt("idConf"));
                 window.add(hm);
             }
             rs1.close();
@@ -188,7 +190,7 @@ public class ServerToClient {
             while (rs1.next()) {
                 Map<String, Object> hm = new HashMap<String, Object>();
                 hm.put("id_light", rs1.getInt("id_light"));
-                hm.put("level", rs1.getString("level"));
+                hm.put("intensity", rs1.getString("intensity"));
                 hm.put("id_windows", rs1.getInt("id_windows"));
                 light.add(hm);
             }
@@ -206,8 +208,8 @@ public class ServerToClient {
             connection.setAutoCommit(false);
 
             op = connection.createStatement()
-                    .executeUpdate(" UPDATE Windows SET light = '" + (String) data_loading.get("light")
-                            + "', blind = 'Niveau 0', opacity = 'Aucun' where id_windows = "
+                    .executeUpdate(" UPDATE Windows SET light = '" + (Integer) data_loading.get("light")
+                            + "', blind = 'Niveau 0', opacity = '"+(Integer) data_loading.get("opacity")+"' where id_windows = "
                             + (Integer) data_loading.get("id_windows") + " ");
             List<Map> update = new ArrayList<Map>();
             logger.info(op + " " + op);
@@ -237,7 +239,7 @@ public class ServerToClient {
 
             op = connection.createStatement()
                     .executeUpdate(" UPDATE Windows SET light = '" + (String) data_loading.get("light")
-                            + "', blind = 'Niveau 1', opacity = 'Faible' where id_windows = "
+                            + "', blind = 'Niveau 1', opacity = '"+(Integer) data_loading.get("opacity")+"' where id_windows = "
                             + (Integer) data_loading.get("id_windows") + " ");
             List<Map> update = new ArrayList<Map>();
             logger.info(op + " " + op);
@@ -267,7 +269,7 @@ public class ServerToClient {
 
             op = connection.createStatement()
                     .executeUpdate(" UPDATE Windows SET light = '" + (String) data_loading.get("light")
-                            + "', blind = 'Niveau 2', opacity = 'Moyen' where id_windows = "
+                            + "', blind = 'Niveau 2', opacity = '"+(Integer) data_loading.get("opacity")+"' where id_windows = "
                             + (Integer) data_loading.get("id_windows") + " ");
             List<Map> update = new ArrayList<Map>();
             logger.info(op + " " + op);
@@ -297,7 +299,7 @@ public class ServerToClient {
 
             op = connection.createStatement()
                     .executeUpdate(" UPDATE Windows SET light = '" + (String) data_loading.get("light")
-                            + "', blind = 'Niveau 3', opacity = 'Fort' where id_windows = "
+                            + "', blind = 'Niveau 3', opacity = '"+(Integer) data_loading.get("opacity")+"' where id_windows = "
                             + (Integer) data_loading.get("id_windows") + " ");
             List<Map> update = new ArrayList<Map>();
             logger.info(op + " " + op);
@@ -386,7 +388,7 @@ public class ServerToClient {
             connection.setAutoCommit(false);
 
             op = connection.createStatement()
-                    .executeUpdate(" UPDATE Windows SET status = 'Milieu', temperature = "
+                    .executeUpdate(" UPDATE Windows SET status = 'Reduit', temperature = "
                             + (Integer) data_loading.get("temperature") + " WHERE id_windows = "
                             + (Integer) data_loading.get("id_windows") + " ");
             List<Map> update = new ArrayList<Map>();
@@ -453,6 +455,7 @@ public class ServerToClient {
                 hm.put("blind", rs1.getString("blind"));
                 hm.put("opacity", rs1.getString("opacity"));
                 hm.put("id_equipment", rs1.getInt("id_equipment"));
+                hm.put("idConf", rs1.getInt("idConf"));
                 windowStatus.add(hm);
             }
             rs1.close();
@@ -462,27 +465,46 @@ public class ServerToClient {
             response_string = mapper.writeValueAsString(response);
         }
 
-        else if (request_name.equals("default_conf")) {
+        else if (request_name.equals("get_values")) {
             Map data_loading = (Map) request.getData();
             ResultSet rs1 = connection.createStatement().executeQuery("SELECT * FROM WindowsPreConf WHERE idConf = "
                     + (Integer) data_loading.get("idConf") + " ORDER BY idConf");
-            List<Map> preConf = new ArrayList<Map>();
+            List<Map> values = new ArrayList<Map>();
             while (rs1.next()) {
                 Map<String, Object> hm = new HashMap<String, Object>();
                 hm.put("idConf", rs1.getInt("idConf"));
                 hm.put("openValue", rs1.getString("openValue"));
                 hm.put("reducedValue", rs1.getBoolean("reducedValue"));
                 hm.put("closedValue", rs1.getBoolean("closedValue"));
-                hm.put("anyTinted", rs1.getInt("anyTinted"));
-                hm.put("weakTinted", rs1.getInt("weakTinted"));
-                hm.put("halfTinted", rs1.getInt("halfTinted"));
-                hm.put("fullTinted", rs1.getInt("fullTinted"));
-                preConf.add(hm);
+                hm.put("noIntensity", rs1.getInt("noIntensity"));
+                hm.put("lowIntensity", rs1.getInt("lowIntensity"));
+                hm.put("mediumIntensity", rs1.getInt("mediumIntensity"));
+                hm.put("highIntensity", rs1.getInt("highIntensity"));
+                values.add(hm);
             }
             rs1.close();
             Map<String, Object> response = new HashMap<String, Object>();
             response.put("name_request", request_name);
-            response.put("data", preConf);
+            response.put("data", values);
+            response_string = mapper.writeValueAsString(response);
+        }
+
+        else if (request_name.equals("get_intensity")) {
+            Map data_loading = (Map) request.getData();
+            ResultSet rs1 = connection.createStatement().executeQuery(
+                    "SELECT * FROM Lighting WHERE id_windows = " + (Integer) data_loading.get("id_windows") + " ");
+            List<Map> intensity = new ArrayList<Map>();
+            while (rs1.next()) {
+                Map<String, Object> hm = new HashMap<String, Object>();
+                hm.put("id_light", rs1.getInt("id_light"));
+                hm.put("intensity", rs1.getString("intensity"));
+                hm.put("id_windows", rs1.getInt("id_windows"));
+                intensity.add(hm);
+            }
+            rs1.close();
+            Map<String, Object> response = new HashMap<String, Object>();
+            response.put("name_request", request_name);
+            response.put("data", intensity);
             response_string = mapper.writeValueAsString(response);
         }
 
