@@ -495,7 +495,7 @@ public class ServerToClient {
             while (rs1.next()) {
                 Map<String, Object> hm = new HashMap<String, Object>();
                 hm.put("id_light", rs1.getInt("id_light"));
-                hm.put("intensity", rs1.getString("intensity"));
+                hm.put("intensity", rs1.getInt("intensity"));
                 hm.put("id_windows", rs1.getInt("id_windows"));
                 intensity.add(hm);
             }
