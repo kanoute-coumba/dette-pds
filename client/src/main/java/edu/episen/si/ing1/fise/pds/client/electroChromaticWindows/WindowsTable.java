@@ -18,9 +18,9 @@ public class WindowsTable {
     private int id_windows;
     private String status;
     private int temperature;
-    private String light;
+    private int light;
     private String blind;
-    private String opacity;
+    private int opacity;
     private int id_equipment;
     private int idConf ;
     GeneralServices company=null;
@@ -44,10 +44,10 @@ public class WindowsTable {
     public void setTemperature(int temperature) {
         this.temperature = temperature;
     }
-    public String getLight() {
+    public int getLight() {
         return light;
     }
-    public void setLight(String light) {
+    public void setLight(int light) {
         this.light = light;
     }
     public String getBlind() {
@@ -56,10 +56,10 @@ public class WindowsTable {
     public void setBlind(String blind) {
         this.blind = blind;
     }
-    public String getOpacity() {
+    public int getOpacity() {
         return opacity;
     }
-    public void setOpacity(String opacity) {
+    public void setOpacity(int opacity) {
         this.opacity = opacity;
     }
     public int getId_equipment() {
@@ -69,7 +69,7 @@ public class WindowsTable {
         this.id_equipment = id_equipment;
     }
 
-    public WindowsTable(int id_windows, String status, int temperature, String light, String blind, String opacity, int id_equipment, int idConf) {
+    public WindowsTable(int id_windows, String status, int temperature, int light, String blind, int opacity, int id_equipment, int idConf) {
         super();
         this.id_windows = id_windows;
         this.status = status;

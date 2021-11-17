@@ -475,8 +475,6 @@ public class ServerToClient {
                 hm.put("idConf", rs1.getInt("idConf"));
                 hm.put("openValue", rs1.getString("openValue"));
                 hm.put("reducedValue", rs1.getBoolean("reducedValue"));
-                hm.put("closedValue", rs1.getBoolean("closedValue"));
-                hm.put("noIntensity", rs1.getInt("noIntensity"));
                 hm.put("lowIntensity", rs1.getInt("lowIntensity"));
                 hm.put("mediumIntensity", rs1.getInt("mediumIntensity"));
                 hm.put("highIntensity", rs1.getInt("highIntensity"));

@@ -118,8 +118,8 @@ public class Config extends JFrame implements ActionListener {
 
                 WindowsTable wTab = new WindowsTable ((Integer)window.get("id_windows"),
                         (String) window.get("status"),(Integer)window.get("temperature"),
-                        (String) window.get("light"),(String)window.get("blind"),
-                        (String)window.get("opacity"),(Integer)window.get("id_equipment"),
+                        (Integer) window.get("light"),(String)window.get("blind"),
+                        (Integer)window.get("opacity"),(Integer)window.get("id_equipment"),
                         (Integer)window.get("idConf") );
 
                 logger.info(" " +wTab.toString());
@@ -136,7 +136,6 @@ public class Config extends JFrame implements ActionListener {
 
                 int openValue = (Integer) values.get("openValue");;
                 int reducedValue = (Integer) values.get("reducedValue");
-                int noIntensity = (Integer) values.get("noIntensity");
                 int lowIntensity = (Integer) values.get("lowIntensity");
                 int mediumIntensity = (Integer) values.get("mediumIntensity");
                 int highIntensity = (Integer) values.get("highIntensity");
@@ -244,8 +243,9 @@ public class Config extends JFrame implements ActionListener {
                 String blind = (String) n.get("blind");
                 String opacity = (String) n.get("opacity");
                 String id_equipment = String.valueOf((int) n.get("id_equipment"));
+                String idConf = String.valueOf((int) n.get("idConf"));
 
-                String [] data = {id_windows, status, temperature, light, blind, opacity, id_equipment};
+                String [] data = {id_windows, status, temperature, light, blind, opacity, id_equipment, idConf};
                 DefaultTableModel tblModel = (DefaultTableModel) table1.getModel();
 
                 tblModel.addRow(data);
