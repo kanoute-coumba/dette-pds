@@ -172,19 +172,19 @@ public class Config extends JFrame implements ActionListener {
                 Boolean update2 = false ;
 
                 if (lux < lowIntensity) {
-                    int opacity= 100*lux/lowIntensity-50;
+                    int opacity= 100*lux/lowIntensity-60;
                     update2 = WindowsTable.windowsUpdateForLightLevelAucun(connection, id_win, lux, opacity);
                 }
                 else if (lowIntensity<lux && lux<mediumIntensity) {
-                    int opacity= 100*lux/mediumIntensity-30;
+                    int opacity= 100*lux/mediumIntensity-40;
                     update2 = WindowsTable.windowsUpdateForLightLevelFaible(connection, id_win, lux, opacity);
                 }
                 else if (mediumIntensity<lux && lux<highIntensity) {
-                    int opacity= 100*lux/highIntensity-10;
+                    int opacity= 100*lux/highIntensity-20;
                     update2 = WindowsTable.windowsUpdateForLightLevelMoyen(connection, id_win, lux, opacity);
                 }
                 else {
-                    int opacity= 100*lux/highIntensity;
+                    int opacity= 100*lux/highIntensity-10;
                     update2 = WindowsTable.windowsUpdateForLightLevelFort(connection, id_win, lux, opacity);
                 }
 
@@ -240,7 +240,7 @@ public class Config extends JFrame implements ActionListener {
                 String id_equipment = String.valueOf((int) n.get("id_equipment"));
                 String idConf = String.valueOf((int) n.get("idConf"));
 
-                String [] data = {id_windows, status, temperature+ "°", light +"lux", blind, opacity +"%", id_equipment, idConf};
+                String [] data = {id_windows, status, temperature+ "°", light +" lux", blind, opacity +" %", id_equipment, idConf};
                 DefaultTableModel tblModel = (DefaultTableModel) table1.getModel();
 
                 tblModel.addRow(data);
