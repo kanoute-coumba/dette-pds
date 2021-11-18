@@ -176,7 +176,7 @@ public class WindowsTable {
         return defaultStatus;
     }
 
-    public static boolean windowsUpdateForLightLevelAucun(ClientToServer connection, int choice, int level, int opacity)
+    public static boolean windowsUpdateForNoOpacity(ClientToServer connection, int choice, int level, int opacity)
     {
         ArrayList<Map>none1=new ArrayList<Map>();
         //Windows.selection = choice ;
@@ -185,7 +185,7 @@ public class WindowsTable {
             if(connection.client.isClosed())
                 connection = new ClientToServer();
             Request request=new Request();
-            request.setName_request("light_aucun");
+            request.setName_request("no_opacity");
             HashMap<String,Object>param=new HashMap<String,Object>();
             param.put("id_windows", choice);
             param.put("light", level);
@@ -204,7 +204,7 @@ public class WindowsTable {
             return false ; //(boolean)none1.get(0).get("not_done");
     }
 
-    public static boolean windowsUpdateForLightLevelFaible(ClientToServer connection, int choice, int level, int opacity)
+    public static boolean windowsUpdateForLowOpacity(ClientToServer connection, int choice, int level, int opacity)
     {
         ArrayList<Map>none2=new ArrayList<Map>();
         //Windows.selection = choice ;
@@ -213,7 +213,7 @@ public class WindowsTable {
             if(connection.client.isClosed())
                 connection = new ClientToServer();
             Request request=new Request();
-            request.setName_request("light_faible");
+            request.setName_request("low_opacity");
             HashMap<String,Object>param=new HashMap<String,Object>();
             param.put("id_windows", choice);
             param.put("light", level);
@@ -232,7 +232,7 @@ public class WindowsTable {
 
     }
 
-    public static boolean windowsUpdateForLightLevelMoyen(ClientToServer connection, int choice, int level, int opacity)
+    public static boolean windowsUpdateForMediumOpacity(ClientToServer connection, int choice, int level, int opacity)
     {
         ArrayList<Map>none3=new ArrayList<Map>();
         //Windows.selection = choice ;
@@ -241,7 +241,7 @@ public class WindowsTable {
             if(connection.client.isClosed())
                 connection = new ClientToServer();
             Request request=new Request();
-            request.setName_request("light_moyen");
+            request.setName_request("medium_opacity");
             HashMap<String,Object>param=new HashMap<String,Object>();
             param.put("id_windows", choice);
             param.put("light", level);
@@ -260,7 +260,7 @@ public class WindowsTable {
 
     }
 
-    public static boolean windowsUpdateForLightLevelFort(ClientToServer connection, int choice, int level, int opacity)
+    public static boolean windowsUpdateForHighOpacity(ClientToServer connection, int choice, int level, int opacity)
     {
         ArrayList<Map>none4=new ArrayList<Map>();
         //Windows.selection = choice ;
@@ -269,7 +269,7 @@ public class WindowsTable {
             if(connection.client.isClosed())
                 connection = new ClientToServer();
             Request request=new Request();
-            request.setName_request("light_fort");
+            request.setName_request("high_opacity");
             HashMap<String,Object>param=new HashMap<String,Object>();
             param.put("id_windows", choice);
             param.put("light", level);
@@ -288,7 +288,7 @@ public class WindowsTable {
 
     }
 
-    public static boolean windowsUpdateForLightLevelAutre(ClientToServer connection, int choice, int level)
+    public static boolean windowsUpdateForOther(ClientToServer connection, int choice, int level, int opacity)
     {
         ArrayList<Map>none5=new ArrayList<Map>();
         //choice = Windows.selection;
@@ -297,10 +297,11 @@ public class WindowsTable {
             if(connection.client.isClosed())
                 connection = new ClientToServer();
             Request request=new Request();
-            request.setName_request("light_autre");
+            request.setName_request("other");
             HashMap<String,Object>param=new HashMap<String,Object>();
             param.put("id_windows", choice);
             param.put("light", level);
+            param.put("opacity", opacity);
             request.setData(param);
             Request response=connection.SendRequest(request);
             none5=(ArrayList<Map>)response.getData();
@@ -315,7 +316,7 @@ public class WindowsTable {
 
     }
 
-    public static boolean windowsUpdateForTemperatureDegreeLessThan18(ClientToServer connection, int choice, int degree)
+    public static boolean windowsUpdateForLowTemperature(ClientToServer connection, int choice, int degree)
     {
         ArrayList<Map>none6=new ArrayList<Map>();
         //Windows.selection = choice;
@@ -324,7 +325,7 @@ public class WindowsTable {
             if(connection.client.isClosed())
                 connection = new ClientToServer();
             Request request=new Request();
-            request.setName_request("less_than_18");
+            request.setName_request("low");
             HashMap<String,Object>param=new HashMap<String,Object>();
             param.put("id_windows", choice);
             param.put("temperature", degree);
@@ -342,7 +343,7 @@ public class WindowsTable {
 
     }
 
-    public static boolean windowsUpdateForTemperatureDegree18_22(ClientToServer connection, int choice, int degree)
+    public static boolean windowsUpdateForMediumTemperature(ClientToServer connection, int choice, int degree)
     {
         ArrayList<Map>none7=new ArrayList<Map>();
         //Windows.selection = choice ;
@@ -351,7 +352,7 @@ public class WindowsTable {
             if(connection.client.isClosed())
                 connection = new ClientToServer();
             Request request=new Request();
-            request.setName_request("between_18_22");
+            request.setName_request("medium");
             HashMap<String,Object>param=new HashMap<String,Object>();
             param.put("id_windows", choice);
             param.put("temperature", degree);
@@ -369,7 +370,7 @@ public class WindowsTable {
 
     }
 
-    public static boolean windowsUpdateForTemperatureDegree22(ClientToServer connection, int choice, int degree)
+    public static boolean windowsUpdateForHighTemperature(ClientToServer connection, int choice, int degree)
     {
         ArrayList<Map>none8=new ArrayList<Map>();
         //Windows.selection = choice ;
@@ -378,7 +379,7 @@ public class WindowsTable {
             if(connection.client.isClosed())
                 connection = new ClientToServer();
             Request request=new Request();
-            request.setName_request("more_than_22");
+            request.setName_request("high");
             HashMap<String,Object>param=new HashMap<String,Object>();
             param.put("id_windows", choice);
             param.put("temperature", degree);

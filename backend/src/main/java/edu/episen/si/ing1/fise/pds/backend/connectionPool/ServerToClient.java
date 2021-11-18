@@ -201,7 +201,7 @@ public class ServerToClient {
             response_string = mapper.writeValueAsString(response);
         }
 
-        else if (request_name.equals("light_aucun")) {
+        else if (request_name.equals("no_opacity")) {
             Map data_loading = (Map) request.getData();
 
             int op = 0;
@@ -231,7 +231,7 @@ public class ServerToClient {
             response_string = mapper.writeValueAsString(response);
         }
 
-        else if (request_name.equals("light_faible")) {
+        else if (request_name.equals("low_opacity")) {
             Map data_loading = (Map) request.getData();
 
             int op = 0;
@@ -261,7 +261,7 @@ public class ServerToClient {
             response_string = mapper.writeValueAsString(response);
         }
 
-        else if (request_name.equals("light_moyen")) {
+        else if (request_name.equals("medium_opacity")) {
             Map data_loading = (Map) request.getData();
 
             int op = 0;
@@ -291,7 +291,7 @@ public class ServerToClient {
             response_string = mapper.writeValueAsString(response);
         }
 
-        else if (request_name.equals("light_fort")) {
+        else if (request_name.equals("high_opacity")) {
             Map data_loading = (Map) request.getData();
 
             int op = 0;
@@ -321,7 +321,7 @@ public class ServerToClient {
             response_string = mapper.writeValueAsString(response);
         }
 
-        else if (request_name.equals("light_autre")) {
+        else if (request_name.equals("other")) {
             Map data_loading = (Map) request.getData();
 
             int op = 0;
@@ -329,8 +329,8 @@ public class ServerToClient {
 
             op = connection.createStatement().executeUpdate(
                     " UPDATE Windows SET light = " + (Integer) data_loading.get("light")+ ", " +
-                            "blind = 'Niveau 4', opacity = 'Fort' where id_windows = "
-                            + (Integer) data_loading.get("id_windows") + " ");
+                            "blind = 'Niveau 4', opacity = "+(Integer) data_loading.get("opacity")+" " +
+                            "where id_windows = " + (Integer) data_loading.get("id_windows") + " ");
             List<Map> update = new ArrayList<Map>();
             logger.info(op + " " + op);
             Map<String, Object> hm = new HashMap<String, Object>();
@@ -351,7 +351,7 @@ public class ServerToClient {
             response_string = mapper.writeValueAsString(response);
         }
 
-        else if (request_name.equals("less_than_18")) {
+        else if (request_name.equals("low")) {
             Map data_loading = (Map) request.getData();
 
             int op = 0;
@@ -381,7 +381,7 @@ public class ServerToClient {
             response_string = mapper.writeValueAsString(response);
         }
 
-        else if (request_name.equals("between_18_22")) {
+        else if (request_name.equals("medium")) {
             Map data_loading = (Map) request.getData();
 
             int op = 0;
@@ -411,7 +411,7 @@ public class ServerToClient {
             response_string = mapper.writeValueAsString(response);
         }
 
-        else if (request_name.equals("more_than_22")) {
+        else if (request_name.equals("high")) {
             Map data_loading = (Map) request.getData();
 
             int op = 0;

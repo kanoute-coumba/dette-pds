@@ -158,34 +158,53 @@ public class Config extends JFrame implements ActionListener {
 
 
                 Boolean update1 = false ;
-
-                if ( degree <= openValue ) {
-                    update1 = WindowsTable.windowsUpdateForTemperatureDegreeLessThan18(connection, id_win, degree);
-                }
-                else if (degree>openValue && degree<reducedValue ) {
-                    update1 = WindowsTable.windowsUpdateForTemperatureDegree18_22(connection, id_win, degree);
-                }
-                else { //if (degree>=reducedValue){
-                    update1 = WindowsTable.windowsUpdateForTemperatureDegree22(connection, id_win, degree);
-                }
-
                 Boolean update2 = false ;
 
-                if (lux < lowIntensity) {
-                    int opacity= 100*lux/lowIntensity-60;
-                    update2 = WindowsTable.windowsUpdateForLightLevelAucun(connection, id_win, lux, opacity);
+                if ( degree <= openValue ) {
+                    int opacity = 0;
+                    update1 = WindowsTable.windowsUpdateForLowTemperature(connection, id_win, degree);
+                    update2 = WindowsTable.windowsUpdateForNoOpacity(connection, id_win, lux, opacity);
+
                 }
-                else if (lowIntensity<lux && lux<mediumIntensity) {
-                    int opacity= 100*lux/mediumIntensity-40;
-                    update2 = WindowsTable.windowsUpdateForLightLevelFaible(connection, id_win, lux, opacity);
+                else if (degree>openValue && degree<reducedValue ) {
+                    update1 = WindowsTable.windowsUpdateForMediumTemperature(connection, id_win, degree);
+
+                    if (lux < lowIntensity) {
+                        int opacity= 100*lux/lowIntensity-60;
+                        update2 = WindowsTable.windowsUpdateForLowOpacity(connection, id_win, lux, opacity);
+                    }
+                    else if (lowIntensity<lux && lux<mediumIntensity) {
+                        int opacity= 100*lux/mediumIntensity-40;
+                        update2 = WindowsTable.windowsUpdateForMediumOpacity(connection, id_win, lux, opacity);
+                    }
+                    else if (mediumIntensity<lux && lux<highIntensity) {
+                        int opacity= 100*lux/highIntensity-20;
+                        update2 = WindowsTable.windowsUpdateForHighOpacity(connection, id_win, lux, opacity);
+                    }
+                    else {
+                        int opacity= 100*lux/highIntensity-10;
+                        update2 = WindowsTable.windowsUpdateForOther(connection, id_win, lux, opacity);
+                    }
+
                 }
-                else if (mediumIntensity<lux && lux<highIntensity) {
-                    int opacity= 100*lux/highIntensity-20;
-                    update2 = WindowsTable.windowsUpdateForLightLevelMoyen(connection, id_win, lux, opacity);
-                }
-                else {
-                    int opacity= 100*lux/highIntensity-10;
-                    update2 = WindowsTable.windowsUpdateForLightLevelFort(connection, id_win, lux, opacity);
+                else { //if (degree>=reducedValue){
+                    update1 = WindowsTable.windowsUpdateForHighTemperature(connection, id_win, degree);
+                    if (lux < lowIntensity) {
+                        int opacity= 100*lux/lowIntensity-60;
+                        update2 = WindowsTable.windowsUpdateForLowOpacity(connection, id_win, lux, opacity);
+                    }
+                    else if (lowIntensity<lux && lux<mediumIntensity) {
+                        int opacity= 100*lux/mediumIntensity-40;
+                        update2 = WindowsTable.windowsUpdateForMediumOpacity(connection, id_win, lux, opacity);
+                    }
+                    else if (mediumIntensity<lux && lux<highIntensity) {
+                        int opacity= 100*lux/highIntensity-20;
+                        update2 = WindowsTable.windowsUpdateForHighOpacity(connection, id_win, lux, opacity);
+                    }
+                    else {
+                        int opacity= 100*lux/highIntensity-10;
+                        update2 = WindowsTable.windowsUpdateForOther(connection, id_win, lux, opacity);
+                    }
                 }
 
                 if(update1==true || update2==true) {
