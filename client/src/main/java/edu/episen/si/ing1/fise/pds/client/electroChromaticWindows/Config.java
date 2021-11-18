@@ -100,7 +100,7 @@ public class Config extends JFrame implements ActionListener {
                 new Object[][] {
                 },
                 new String[] {
-                        "id_fenetre", "statut", "temperature", "luminosité(en lux)", "store", "opacité(en %)", "id_equipement", "id_conf"
+                        "id_fenetre", "statut", "temperature", "luminosité", "store", "opacité", "id_equipement", "id_conf"
                 }
         ));
         pan1.add(bouton1);
@@ -158,70 +158,20 @@ public class Config extends JFrame implements ActionListener {
 
 
                 Boolean update1 = false ;
-                Boolean update2 = false ;
 
                 if ( degree <= openValue ) {
                     update1 = WindowsTable.windowsUpdateForTemperatureDegreeLessThan18(connection, id_win, degree);
-
-                    if (lux < lowIntensity) {
-                        int opacity= 100*lux/lowIntensity-50;
-                        update2 = WindowsTable.windowsUpdateForLightLevelAucun(connection, id_win, lux, opacity);
-                    }
-                    else if (lowIntensity<lux && lux<mediumIntensity) {
-                        int opacity= 100*lux/mediumIntensity-30;
-                        update2 = WindowsTable.windowsUpdateForLightLevelFaible(connection, id_win, lux, opacity);
-                    }
-                    else if (mediumIntensity<lux && lux<highIntensity) {
-                        int opacity= 100*lux/highIntensity-10;
-                        update2 = WindowsTable.windowsUpdateForLightLevelMoyen(connection, id_win, lux, opacity);
-                    }
-                    else {
-                        int opacity= 100*lux/highIntensity;
-                        update2 = WindowsTable.windowsUpdateForLightLevelFort(connection, id_win, lux, opacity);
-                    }
                 }
                 else if (degree>openValue && degree<reducedValue ) {
                     update1 = WindowsTable.windowsUpdateForTemperatureDegree18_22(connection, id_win, degree);
-                    if (lux < lowIntensity) {
-                        int opacity= 100*lux/lowIntensity-50;
-                        update2 = WindowsTable.windowsUpdateForLightLevelAucun(connection, id_win, lux, opacity);
-                    }
-                    else if (lowIntensity<lux && lux<mediumIntensity) {
-                        int opacity= 100*lux/mediumIntensity-30;
-                        update2 = WindowsTable.windowsUpdateForLightLevelFaible(connection, id_win, lux, opacity);
-                    }
-                    else if (mediumIntensity<lux && lux<highIntensity) {
-                        int opacity= 100*lux/highIntensity-10;
-                        update2 = WindowsTable.windowsUpdateForLightLevelMoyen(connection, id_win, lux, opacity);
-                    }
-                    else {
-                        int opacity= 100*lux/highIntensity;
-                        update2 = WindowsTable.windowsUpdateForLightLevelFort(connection, id_win, lux, opacity);
-                    }
-
                 }
                 else { //if (degree>=reducedValue){
                     update1 = WindowsTable.windowsUpdateForTemperatureDegree22(connection, id_win, degree);
-                    if (lux < lowIntensity) {
-                        int opacity= 100*lux/lowIntensity-50;
-                        update2 = WindowsTable.windowsUpdateForLightLevelAucun(connection, id_win, lux, opacity);
-                    }
-                    else if (lowIntensity<lux && lux<mediumIntensity) {
-                        int opacity= 100*lux/mediumIntensity-30;
-                        update2 = WindowsTable.windowsUpdateForLightLevelFaible(connection, id_win, lux, opacity);
-                    }
-                    else if (mediumIntensity<lux && lux<highIntensity) {
-                        int opacity= 100*lux/highIntensity-10;
-                        update2 = WindowsTable.windowsUpdateForLightLevelMoyen(connection, id_win, lux, opacity);
-                    }
-                    else {
-                        int opacity= 100*lux/highIntensity;
-                        update2 = WindowsTable.windowsUpdateForLightLevelFort(connection, id_win, lux, opacity);
-                    }
-
                 }
 
-                /*else if (lux < lowIntensity) {
+                Boolean update2 = false ;
+
+                if (lux < lowIntensity) {
                     int opacity= 100*lux/lowIntensity-50;
                     update2 = WindowsTable.windowsUpdateForLightLevelAucun(connection, id_win, lux, opacity);
                 }
@@ -237,28 +187,6 @@ public class Config extends JFrame implements ActionListener {
                     int opacity= 100*lux/highIntensity;
                     update2 = WindowsTable.windowsUpdateForLightLevelFort(connection, id_win, lux, opacity);
                 }
-                */
-
-
-                //System.out.println(degree);
-                /*switch (level) {
-
-                    case "Aucun":
-                        update1 = WindowsTable.windowsUpdateForLightLevelAucun(connection, id_win, level);
-                        break;
-                    case "Faible":
-                        update1 = WindowsTable.windowsUpdateForLightLevelFaible(connection, id_win, level);
-                        break;
-                    case "Moyen":
-                        update1 = WindowsTable.windowsUpdateForLightLevelMoyen(connection, id_win, level);
-                        break;
-                    case "Fort":
-                        update1 = WindowsTable.windowsUpdateForLightLevelFort(connection, id_win, level);
-                        break;
-                    default:
-                        update1 = WindowsTable.windowsUpdateForLightLevelAutre(connection, id_win, level);
-                }*/
-
 
                 if(update1==true || update2==true) {
                     JOptionPane.showMessageDialog(new JFrame(),
@@ -312,7 +240,7 @@ public class Config extends JFrame implements ActionListener {
                 String id_equipment = String.valueOf((int) n.get("id_equipment"));
                 String idConf = String.valueOf((int) n.get("idConf"));
 
-                String [] data = {id_windows, status, temperature, light, blind, opacity, id_equipment, idConf};
+                String [] data = {id_windows, status, temperature+ "°", light +"lux", blind, opacity +"%", id_equipment, idConf};
                 DefaultTableModel tblModel = (DefaultTableModel) table1.getModel();
 
                 tblModel.addRow(data);
