@@ -182,7 +182,7 @@ public class Config extends JFrame implements ActionListener {
                         update2 = WindowsTable.windowsUpdateForHighOpacity(connection, id_win, lux, opacity);
                     }
                     else {
-                        int opacity= 100*lux/highIntensity-10;
+                        int opacity= 100;
                         update2 = WindowsTable.windowsUpdateForOther(connection, id_win, lux, opacity);
                     }
 
