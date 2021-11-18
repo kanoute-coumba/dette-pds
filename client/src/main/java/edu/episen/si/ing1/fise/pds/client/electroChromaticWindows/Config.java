@@ -143,12 +143,19 @@ public class Config extends JFrame implements ActionListener {
 
                 int degree = (Integer) temperature.get("degree");
                 int lux = (Integer) intensity.get("intensity");
+                //System.out.println("lowIntensity = "+lux);
 
                 int openValue = (Integer) values.get("openValue");;
                 int reducedValue = (Integer) values.get("reducedValue");
                 int lowIntensity = (Integer) values.get("lowIntensity");
                 int mediumIntensity = (Integer) values.get("mediumIntensity");
                 int highIntensity = (Integer) values.get("highIntensity");
+
+                System.out.println("light = "+lux);
+                System.out.println("lowIntensity = "+lowIntensity);
+                System.out.println("mediumIntensity = "+mediumIntensity);
+                System.out.println("highIntensity = "+highIntensity);
+
 
                 Boolean update1 = false ;
                 Boolean update2 = false ;

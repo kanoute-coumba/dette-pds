@@ -238,7 +238,7 @@ public class ServerToClient {
             connection.setAutoCommit(false);
 
             op = connection.createStatement().executeUpdate(
-                    " UPDATE Windows SET light = " + (String) data_loading.get("light")+ ", " +
+                    " UPDATE Windows SET light = " + (Integer) data_loading.get("light")+ ", " +
                             "blind = 'Niveau 1', opacity = "+(Integer) data_loading.get("opacity")+" " +
                             "where id_windows = " + (Integer) data_loading.get("id_windows") + " ");
             List<Map> update = new ArrayList<Map>();
@@ -268,7 +268,7 @@ public class ServerToClient {
             connection.setAutoCommit(false);
 
             op = connection.createStatement().executeUpdate(
-                    " UPDATE Windows SET light = " + (String) data_loading.get("light")+ ", " +
+                    " UPDATE Windows SET light = " + (Integer) data_loading.get("light")+ ", " +
                             "blind = 'Niveau 2', opacity = "+(Integer) data_loading.get("opacity")+" " +
                             "where id_windows = " + (Integer) data_loading.get("id_windows") + " ");
             List<Map> update = new ArrayList<Map>();
@@ -298,7 +298,7 @@ public class ServerToClient {
             connection.setAutoCommit(false);
 
             op = connection.createStatement().executeUpdate(
-                    " UPDATE Windows SET light = " + (String) data_loading.get("light") + ", " +
+                    " UPDATE Windows SET light = " + (Integer) data_loading.get("light") + ", " +
                             "blind = 'Niveau 3', opacity = "+(Integer) data_loading.get("opacity")+" " +
                             "where id_windows = " + (Integer) data_loading.get("id_windows") + " ");
             List<Map> update = new ArrayList<Map>();
@@ -328,7 +328,7 @@ public class ServerToClient {
             connection.setAutoCommit(false);
 
             op = connection.createStatement().executeUpdate(
-                    " UPDATE Windows SET light = " + (String) data_loading.get("light")+ ", " +
+                    " UPDATE Windows SET light = " + (Integer) data_loading.get("light")+ ", " +
                             "blind = 'Niveau 4', opacity = 'Fort' where id_windows = "
                             + (Integer) data_loading.get("id_windows") + " ");
             List<Map> update = new ArrayList<Map>();
