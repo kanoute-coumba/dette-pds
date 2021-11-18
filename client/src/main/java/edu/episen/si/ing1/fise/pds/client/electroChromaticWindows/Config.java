@@ -155,15 +155,66 @@ public class Config extends JFrame implements ActionListener {
 
                 if ( degree <= openValue ) {
                     update1 = WindowsTable.windowsUpdateForTemperatureDegreeLessThan18(connection, id_win, degree);
+
+                    if (lux < lowIntensity) {
+                        int opacity= 100*lux/lowIntensity-50;
+                        update2 = WindowsTable.windowsUpdateForLightLevelAucun(connection, id_win, lux, opacity);
+                    }
+                    else if (lowIntensity<lux && lux<mediumIntensity) {
+                        int opacity= 100*lux/mediumIntensity-30;
+                        update2 = WindowsTable.windowsUpdateForLightLevelFaible(connection, id_win, lux, opacity);
+                    }
+                    else if (mediumIntensity<lux && lux<highIntensity) {
+                        int opacity= 100*lux/highIntensity-10;
+                        update2 = WindowsTable.windowsUpdateForLightLevelMoyen(connection, id_win, lux, opacity);
+                    }
+                    else {
+                        int opacity= 100*lux/highIntensity;
+                        update2 = WindowsTable.windowsUpdateForLightLevelFort(connection, id_win, lux, opacity);
+                    }
                 }
                 else if (degree>openValue && degree<reducedValue ) {
                     update1 = WindowsTable.windowsUpdateForTemperatureDegree18_22(connection, id_win, degree);
+                    if (lux < lowIntensity) {
+                        int opacity= 100*lux/lowIntensity-50;
+                        update2 = WindowsTable.windowsUpdateForLightLevelAucun(connection, id_win, lux, opacity);
+                    }
+                    else if (lowIntensity<lux && lux<mediumIntensity) {
+                        int opacity= 100*lux/mediumIntensity-30;
+                        update2 = WindowsTable.windowsUpdateForLightLevelFaible(connection, id_win, lux, opacity);
+                    }
+                    else if (mediumIntensity<lux && lux<highIntensity) {
+                        int opacity= 100*lux/highIntensity-10;
+                        update2 = WindowsTable.windowsUpdateForLightLevelMoyen(connection, id_win, lux, opacity);
+                    }
+                    else {
+                        int opacity= 100*lux/highIntensity;
+                        update2 = WindowsTable.windowsUpdateForLightLevelFort(connection, id_win, lux, opacity);
+                    }
+
                 }
-                else if (degree>=reducedValue){
+                else { //if (degree>=reducedValue){
                     update1 = WindowsTable.windowsUpdateForTemperatureDegree22(connection, id_win, degree);
+                    if (lux < lowIntensity) {
+                        int opacity= 100*lux/lowIntensity-50;
+                        update2 = WindowsTable.windowsUpdateForLightLevelAucun(connection, id_win, lux, opacity);
+                    }
+                    else if (lowIntensity<lux && lux<mediumIntensity) {
+                        int opacity= 100*lux/mediumIntensity-30;
+                        update2 = WindowsTable.windowsUpdateForLightLevelFaible(connection, id_win, lux, opacity);
+                    }
+                    else if (mediumIntensity<lux && lux<highIntensity) {
+                        int opacity= 100*lux/highIntensity-10;
+                        update2 = WindowsTable.windowsUpdateForLightLevelMoyen(connection, id_win, lux, opacity);
+                    }
+                    else {
+                        int opacity= 100*lux/highIntensity;
+                        update2 = WindowsTable.windowsUpdateForLightLevelFort(connection, id_win, lux, opacity);
+                    }
+
                 }
 
-                else if (lux < lowIntensity) {
+                /*else if (lux < lowIntensity) {
                     int opacity= 100*lux/lowIntensity-50;
                     update2 = WindowsTable.windowsUpdateForLightLevelAucun(connection, id_win, lux, opacity);
                 }
@@ -179,6 +230,7 @@ public class Config extends JFrame implements ActionListener {
                     int opacity= 100*lux/highIntensity;
                     update2 = WindowsTable.windowsUpdateForLightLevelFort(connection, id_win, lux, opacity);
                 }
+                */
 
 
                 //System.out.println(degree);
