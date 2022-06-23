@@ -109,9 +109,9 @@ public class SmartCityAppServer extends Thread {
         ds = new DataSource(maxConnectionValue, connectionTimeOutValue);
 
         try {
-            myServerSocket = new ServerSocket(1111);
+            myServerSocket = new ServerSocket(3333);
         } catch (IOException ioe) {
-            System.out.println("Could not create server socket on port 1111. Quitting.");
+            System.out.println("Could not create server socket on port 3333 Quitting.");
             System.exit(-1);
         }
 
