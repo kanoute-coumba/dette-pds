@@ -61,17 +61,19 @@ public class HomePage extends JFrame  {
 
                 if(my_company.getCompany_name()!=" Saisir le nom de votre entreprise.....")
                 {
+                    /*
+                    try {
 
-                    try
                     {
                         connection.client.close();
 
                     }
                     catch(Exception e1)
                     {
-
+                        e1.printStackTrace();
                     }
 
+                    */
                     WelcomePage next_view=new WelcomePage(my_company);
                     dispose();
                 }

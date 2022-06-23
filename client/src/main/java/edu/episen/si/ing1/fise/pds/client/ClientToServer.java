@@ -27,7 +27,7 @@ public class ClientToServer {
     public ClientToServer() {
         try {
             String serverAddress= "172.31.249.130";
-            client=new Socket(serverAddress,1111);
+            client=new Socket(serverAddress,3333);
         } catch (Exception e) {
 
             e.printStackTrace();
