@@ -58,17 +58,20 @@ public class HomePage extends JFrame  {
         valider.addActionListener (new ActionListener () {
             public void actionPerformed(ActionEvent e) {
 
-                try
-                {
-                    connection.client.close();
 
-                }
-                catch(Exception e1)
-                {
-
-                }
                 if(my_company.getCompany_name()!=" Saisir le nom de votre entreprise.....")
                 {
+
+                    try
+                    {
+                        connection.client.close();
+
+                    }
+                    catch(Exception e1)
+                    {
+
+                    }
+
                     WelcomePage next_view=new WelcomePage(my_company);
                     dispose();
                 }
