@@ -95,7 +95,7 @@ public class WindowsPreConf {
             if(connection.client.isClosed())
                 connection = new ClientToServer();
             Request request=new Request();
-            request.setName_request("get_values");
+            request.setNameRequest("get_values");
             HashMap<String,Object> param=new HashMap<String,Object>();
             param.put("idConf", idConf);
             request.setData(param);

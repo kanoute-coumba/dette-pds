@@ -91,7 +91,7 @@ public class WindowsTable {
             if(connection.client.isClosed())
                 connection = new ClientToServer();
             Request request=new Request();
-            request.setName_request("own_equipment");
+            request.setNameRequest("own_equipment");
             HashMap<String,Object>param=new HashMap<String,Object>();
             param.put("id_gs",id_gs);
             //param.put("type_equipment",type_equipment);
@@ -114,7 +114,7 @@ public class WindowsTable {
             if(connection.client.isClosed())
                 connection = new ClientToServer();
             Request request=new Request();
-            request.setName_request("own_windows");
+            request.setNameRequest("own_windows");
             HashMap<String,Object>param=new HashMap<String,Object>();
             param.put("id_gs",id_gs);
             //param.put("type_equipment", type_equipment); //fenetre electro-chromatique
@@ -137,7 +137,7 @@ public class WindowsTable {
             if(connection.client.isClosed())
                 connection = new ClientToServer();
             Request request=new Request();
-            request.setName_request("get_window");
+            request.setNameRequest("get_window");
             HashMap<String,Object>param=new HashMap<String,Object>();
             param.put("id_equipment", id_eq);
             request.setData(param);
@@ -163,7 +163,7 @@ public class WindowsTable {
             if(connection.client.isClosed())
                 connection = new ClientToServer();
             Request request=new Request();
-            request.setName_request("default_status");
+            request.setNameRequest("default_status");
             HashMap<String,Object>param=new HashMap<String,Object>();
             param.put("id_equipment", choice);
             request.setData(param);
@@ -185,7 +185,7 @@ public class WindowsTable {
             if(connection.client.isClosed())
                 connection = new ClientToServer();
             Request request=new Request();
-            request.setName_request("no_opacity");
+            request.setNameRequest("no_opacity");
             HashMap<String,Object>param=new HashMap<String,Object>();
             param.put("id_windows", choice);
             param.put("light", level);
@@ -213,7 +213,7 @@ public class WindowsTable {
             if(connection.client.isClosed())
                 connection = new ClientToServer();
             Request request=new Request();
-            request.setName_request("low_opacity");
+            request.setNameRequest("low_opacity");
             HashMap<String,Object>param=new HashMap<String,Object>();
             param.put("id_windows", choice);
             param.put("light", level);
@@ -241,7 +241,7 @@ public class WindowsTable {
             if(connection.client.isClosed())
                 connection = new ClientToServer();
             Request request=new Request();
-            request.setName_request("medium_opacity");
+            request.setNameRequest("medium_opacity");
             HashMap<String,Object>param=new HashMap<String,Object>();
             param.put("id_windows", choice);
             param.put("light", level);
@@ -269,7 +269,7 @@ public class WindowsTable {
             if(connection.client.isClosed())
                 connection = new ClientToServer();
             Request request=new Request();
-            request.setName_request("high_opacity");
+            request.setNameRequest("high_opacity");
             HashMap<String,Object>param=new HashMap<String,Object>();
             param.put("id_windows", choice);
             param.put("light", level);
@@ -297,7 +297,7 @@ public class WindowsTable {
             if(connection.client.isClosed())
                 connection = new ClientToServer();
             Request request=new Request();
-            request.setName_request("other");
+            request.setNameRequest("other");
             HashMap<String,Object>param=new HashMap<String,Object>();
             param.put("id_windows", choice);
             param.put("light", level);
@@ -325,7 +325,7 @@ public class WindowsTable {
             if(connection.client.isClosed())
                 connection = new ClientToServer();
             Request request=new Request();
-            request.setName_request("low");
+            request.setNameRequest("low");
             HashMap<String,Object>param=new HashMap<String,Object>();
             param.put("id_windows", choice);
             param.put("temperature", degree);
@@ -352,7 +352,7 @@ public class WindowsTable {
             if(connection.client.isClosed())
                 connection = new ClientToServer();
             Request request=new Request();
-            request.setName_request("medium");
+            request.setNameRequest("medium");
             HashMap<String,Object>param=new HashMap<String,Object>();
             param.put("id_windows", choice);
             param.put("temperature", degree);
@@ -379,7 +379,7 @@ public class WindowsTable {
             if(connection.client.isClosed())
                 connection = new ClientToServer();
             Request request=new Request();
-            request.setName_request("high");
+            request.setNameRequest("high");
             HashMap<String,Object>param=new HashMap<String,Object>();
             param.put("id_windows", choice);
             param.put("temperature", degree);
@@ -405,7 +405,7 @@ public class WindowsTable {
             if(connection.client.isClosed())
                 connection = new ClientToServer();
             Request request=new Request();
-            request.setName_request("all_rented_workspaces");
+            request.setNameRequest("all_rented_workspaces");
             HashMap<String,Object>param=new HashMap<String,Object>();
             param.put("id_gs",id_gs);
             request.setData(param);

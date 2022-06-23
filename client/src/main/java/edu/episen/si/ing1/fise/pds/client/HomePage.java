@@ -57,16 +57,18 @@ public class HomePage extends JFrame  {
 
         valider.addActionListener (new ActionListener () {
             public void actionPerformed(ActionEvent e) {
-                if(my_company.getCompany_name()!=" Saisir le nom de votre entreprise.....")
+
+                try
+                {
+                    connection.client.close();
+
+                }
+                catch(Exception e1)
                 {
 
-                    try
-                    {
-                        connection.client.close();
-                    }catch(Exception ex)
-                    {
-                        ex.printStackTrace();
-                    }
+                }
+                if(my_company.getCompany_name()!=" Saisir le nom de votre entreprise.....")
+                {
                     WelcomePage next_view=new WelcomePage(my_company);
                     dispose();
                 }
@@ -128,6 +130,7 @@ public class HomePage extends JFrame  {
         setVisible(true);
 
     }
+
 
     public static void main(String[] args) {
         // TODO Auto-generated method stub

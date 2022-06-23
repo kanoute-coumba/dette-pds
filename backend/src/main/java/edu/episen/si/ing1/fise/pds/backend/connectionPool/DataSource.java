@@ -3,36 +3,36 @@ package edu.episen.si.ing1.fise.pds.backend.connectionPool;
 import java.util.ArrayList;
 public class DataSource {
     //attributs
-    static JDBCConnectionPool conPool=new JDBCConnectionPool ();
-    private int connection_interval;
+    JDBCConnectionPool conPool=new JDBCConnectionPool ();
+    private int connectionInterval;
 
     public int getMaxConnection()
     {
-        return conPool.getMax_connection();
+        return conPool.getMaxConnection();
     }
 
     public int getUsedConnection()
     {
-        return conPool.getUsed_connection();
+        return conPool.getUsedConnection();
     }
-    public void setMaxConnection(int max_con)
+    public void setMaxConnection(int maxCon)
     {
-        conPool.setMax_connection(max_con);
+        conPool.setMaxConnection(maxCon);
 
     }
 
-    public void setUsedConnection(int used_con)
+    public void setUsedConnection(int usedCon)
     {
-        conPool.setUsed_connection(used_con);
+        conPool.setUsedConnection(usedCon);
     }
 
     //constructor
-    public DataSource(int max_con, int con_interv) {
+    public DataSource(int maxCon, int conInterv) {
         setUsedConnection(0);
-        setMaxConnection(max_con);
-        connection_interval=con_interv;
+        setMaxConnection(maxCon);
+        connectionInterval=conInterv;
         ArrayList<ConnectionDB> cons=new ArrayList<ConnectionDB>();
-        for(int i=0;i<max_con;i++)
+        for(int i=0;i<maxCon;i++)
         {
             ConnectionDB c=new ConnectionDB();
             cons.add(c);
@@ -42,15 +42,15 @@ public class DataSource {
 
 
     //methods
-    public static ConnectionDB takeCon()
+    public ConnectionDB takeCon()
     {
         return conPool.connectionEntity();
     }
-    public static void returnCon(ConnectionDB con)
+    public void returnCon(ConnectionDB con)
     {
         conPool.returnCon(con);
     }
-    public static void closure()
+    public void closure()
     {
         conPool.Close();
     }

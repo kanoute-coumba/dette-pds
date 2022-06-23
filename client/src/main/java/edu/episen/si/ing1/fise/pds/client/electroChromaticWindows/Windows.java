@@ -122,8 +122,6 @@ public class Windows extends JFrame implements ActionListener{
         middlePanel.add(lab2);
         middlePanel.add(box);
 
-
-
         mainPanel.add(middlePanel);
 
         JPanel southPanel = new JPanel();
@@ -147,104 +145,85 @@ public class Windows extends JFrame implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         // TODO Auto-generated method stub
 
-        if (e.getActionCommand() == "Retour") {
-            init = new Init(company);
-            this.dispose();
-        }
-        else if (e.getActionCommand() == "Charger mes fenetres") {
-            String isAvailable;
-            String isWorking;
-            ArrayList<Map> rs1 = WindowsTable.ownWindows(connection, company.getId_generalservices());
-
-            if (rs1.isEmpty()) {
-
-                JOptionPane.showMessageDialog(new JFrame(),"Cet emplacement n'a pas d'equipments de type Fenetre Electro-chromatique"," Ressayer !",JOptionPane.PLAIN_MESSAGE);
-            }
-            else {
-
-                try
-                {
-                    connection.client.close();
-
-                }
-                catch(Exception e1)
-                {
-
-                }
-
-
-                for(Map n:rs1)
-                {
-                    String id_equipment = String.valueOf((int) n.get("id_equipment"));
-                    String type_equipment = (String) n.get("type_equipment");
-                    String is_available = String.valueOf((boolean) n.get("is_available"));
-                    if (is_available=="true")
-                        isAvailable= "oui" ;
-                    else isAvailable= "non";
-                    String is_working = String.valueOf((boolean) n.get("is_working"));
-                    if (is_working=="true")
-                        isWorking= "oui" ;
-                    else isWorking= "non";
-                    String id_gs = String.valueOf((int) n.get("id_gs"));
-                    String id_position = String.valueOf((int) n.get("id_position"));
-
-                    String [] data = {id_equipment, type_equipment, isAvailable, isWorking, id_gs, id_position};
-                    DefaultTableModel tblModel = (DefaultTableModel) table.getModel();
-
-
-                    tblModel.addRow(data);
-
-                }
-
-                for(Map n:rs1)
-                {
-                    int id = (int) n.get("id_equipment");
-
-                    box.addItem(id);
-
-
-                    box.addActionListener(new ActionListener() {
-                        public void actionPerformed(ActionEvent event) {
-
-                            if (event.getSource()== box) {
-                                selection = (int) box.getSelectedItem();
-
-
-                            }
-                        }
-                    });
-
-                }
-
-            }}
-
-        else if (e.getActionCommand() == "Sélectionner") {
-
-            if (selection!=0) {
-                JOptionPane.showMessageDialog(new JFrame(),"La fenetre est prete à etre configurée ","Selectionné !!! ",JOptionPane.PLAIN_MESSAGE);
-                try
-                {
-                    connection.client.close();
-
-                }
-                catch(Exception e1)
-                {
-
-                }
-                config = new Config(company);
+            if (e.getActionCommand() == "Retour") {
+                init = new Init(company);
                 this.dispose();
+            } else if (e.getActionCommand() == "Charger mes fenetres") {
+                String isAvailable;
+                String isWorking;
+                ArrayList<Map> rs1 = WindowsTable.ownWindows(connection, company.getId_generalservices());
+                try
+                {
+                    connection.client.close();
+
+                }
+                catch(Exception e1)
+                {
+
+                }
+                if (rs1.isEmpty()) {
+
+                    JOptionPane.showMessageDialog(new JFrame(), "Cet emplacement n'a pas d'equipments de type Fenetre Electro-chromatique", " Ressayer !", JOptionPane.PLAIN_MESSAGE);
+                } else {
+
+                    for (Map n : rs1) {
+                        String id_equipment = String.valueOf((int) n.get("id_equipment"));
+                        String type_equipment = (String) n.get("type_equipment");
+                        String is_available = String.valueOf((boolean) n.get("is_available"));
+                        if (is_available == "true")
+                            isAvailable = "oui";
+                        else isAvailable = "non";
+                        String is_working = String.valueOf((boolean) n.get("is_working"));
+                        if (is_working == "true")
+                            isWorking = "oui";
+                        else isWorking = "non";
+                        String id_gs = String.valueOf((int) n.get("id_gs"));
+                        String id_position = String.valueOf((int) n.get("id_position"));
+
+                        String[] data = {id_equipment, type_equipment, isAvailable, isWorking, id_gs, id_position};
+                        DefaultTableModel tblModel = (DefaultTableModel) table.getModel();
+
+
+                        tblModel.addRow(data);
+
+                    }
+
+                    for (Map n : rs1) {
+                        int id = (int) n.get("id_equipment");
+
+                        box.addItem(id);
+
+
+                        box.addActionListener(new ActionListener() {
+                            public void actionPerformed(ActionEvent event) {
+
+                                if (event.getSource() == box) {
+                                    selection = (int) box.getSelectedItem();
+
+
+                                }
+                            }
+                        });
+
+                    }
+
+                }
             }
-            else
-                JOptionPane.showMessageDialog(new JFrame(),"Vous n'avez pas sélectionner la fenetre à configurer","Aucune sélection",JOptionPane.PLAIN_MESSAGE);
+            else if (e.getActionCommand() == "Sélectionner") {
 
+                if (selection != 0) {
+                    JOptionPane.showMessageDialog(new JFrame(), "La fenetre est prete à etre configurée ", "Selectionné !!! ", JOptionPane.PLAIN_MESSAGE);
+
+                    config = new Config(company);
+                    this.dispose();
+                } else
+                    JOptionPane.showMessageDialog(new JFrame(), "Vous n'avez pas sélectionner la fenetre à configurer", "Aucune sélection", JOptionPane.PLAIN_MESSAGE);
+
+            } else if (e.getActionCommand() == "Fenetres electro-chromatiques") {
+
+                welcome = new Welcome(company);
+                this.dispose();
+
+            }
         }
-
-        else if (e.getActionCommand() == "Fenetres electro-chromatiques") {
-
-            welcome = new Welcome(company);
-            this.dispose();
-
-        }
-    }
-
 }

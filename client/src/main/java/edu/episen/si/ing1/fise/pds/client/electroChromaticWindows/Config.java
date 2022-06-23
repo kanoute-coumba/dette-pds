@@ -111,16 +111,6 @@ public class Config extends JFrame implements ActionListener {
 
         bouton4.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                try
-                {
-                    connection.client.close();
-
-
-                }
-                catch(Exception e1)
-                {
-
-                }
 
                 Map window = WindowsTable.getWindow(connection, Windows.selection);
 
@@ -236,16 +226,6 @@ public class Config extends JFrame implements ActionListener {
         }
         else if (e.getActionCommand() == "Statut fenetre") {
             ArrayList<Map> rs1 = WindowsTable.windowsDefaultStatus(connection, Windows.selection);
-            try
-            {
-                connection.client.close();
-
-
-            }
-            catch(Exception e1)
-            {
-
-            }
 
             for(Map n:rs1)
 

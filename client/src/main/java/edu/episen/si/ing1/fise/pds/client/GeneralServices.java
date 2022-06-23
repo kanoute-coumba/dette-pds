@@ -45,7 +45,7 @@ public class GeneralServices {
         try
         {
             Request request=new Request();
-            request.setName_request("all_generalServices");
+            request.setNameRequest("all_generalServices");
             HashMap<String,Object>param=new HashMap<String,Object>();
             request.setData(param);
             Request response=connection.SendRequest(request);
