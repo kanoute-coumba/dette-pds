@@ -13,7 +13,6 @@ public class ClientToServer {
     private BufferedReader in;
     private ObjectMapper mapper=new ObjectMapper();
 
-
     public Request SendRequest(Request req) throws Exception
     {
         String request=mapper.writeValueAsString(req);

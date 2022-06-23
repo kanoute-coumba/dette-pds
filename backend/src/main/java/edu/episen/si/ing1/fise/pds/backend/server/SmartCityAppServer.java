@@ -28,7 +28,7 @@ public class SmartCityAppServer extends Thread {
     public static DataSource ds = new DataSource(5, 5);
     static boolean inTestMode = false;
     static int maxConnectionValue = 12;
-    static int connectionTimeOutValue = 0;
+    static int connectionTimeOutValue = 10;
 
     //ServerSocket server;
     Socket client;

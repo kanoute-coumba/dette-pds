@@ -44,6 +44,8 @@ public class GeneralServices {
         ArrayList<Map> general_services=new ArrayList<Map>();
         try
         {
+            if(connection.client.isClosed())
+                connection = new ClientToServer();
             Request request=new Request();
             request.setNameRequest("all_generalServices");
             HashMap<String,Object>param=new HashMap<String,Object>();
