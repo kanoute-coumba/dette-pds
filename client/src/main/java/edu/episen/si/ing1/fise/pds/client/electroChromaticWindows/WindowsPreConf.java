@@ -90,12 +90,12 @@ public class WindowsPreConf {
     public static Map getValues(ClientToServer connection, int idConf)
     {
         ArrayList<Map> value =new ArrayList<Map>();
-      try
+        try
         {
             if(connection.client.isClosed())
                 connection = new ClientToServer();
             Request request=new Request();
-            request.setNameRequest("get_values");
+            request.setName_request("get_values");
             HashMap<String,Object> param=new HashMap<String,Object>();
             param.put("idConf", idConf);
             request.setData(param);

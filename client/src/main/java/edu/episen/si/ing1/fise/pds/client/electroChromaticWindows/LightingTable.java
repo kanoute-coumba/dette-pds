@@ -65,7 +65,7 @@ public class LightingTable {
             if(connection.client.isClosed())
                 connection = new ClientToServer();
             Request request=new Request();
-            request.setNameRequest("get_light");
+            request.setName_request("get_light");
             HashMap<String,Object>param=new HashMap<String,Object>();
             param.put("id_windows", choice);
             request.setData(param);
@@ -91,7 +91,7 @@ public class LightingTable {
             if(connection.client.isClosed())
                 connection = new ClientToServer();
             Request request=new Request();
-            request.setNameRequest("get_intensity");
+            request.setName_request("get_intensity");
             HashMap<String,Object>param=new HashMap<String,Object>();
             param.put("id_windows", choice);
             request.setData(param);

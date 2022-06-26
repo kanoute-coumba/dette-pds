@@ -9,7 +9,7 @@ import java.sql.*;
 public class ConnectionDB {
 
         //attribute
-        private static final String dataSmartCityEnVar = "SERVER_CONFIG";
+        private static final String data_smart_city_enVar = "SERVER_CONFIG";
         private Config config=null;
         public Connection connection;
 
@@ -18,7 +18,7 @@ public class ConnectionDB {
         {
                 try {
                         ObjectMapper mapper = new ObjectMapper(new YAMLFactory());
-                        config=mapper.readValue(new File(System.getenv(dataSmartCityEnVar)), Config.class);
+                        config=mapper.readValue(new File(System.getenv(data_smart_city_enVar)), Config.class);
                         mapper = new ObjectMapper();
                         Class.forName(config.getDriver());
                         this.connection = DriverManager.getConnection(config.getURL(),

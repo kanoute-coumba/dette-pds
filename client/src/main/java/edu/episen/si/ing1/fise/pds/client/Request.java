@@ -1,13 +1,13 @@
 package edu.episen.si.ing1.fise.pds.client;
 
 public class Request {
-    private String nameRequest;
+    private String name_request;
     private Object data;
-    public String nameRequest() {
-        return nameRequest;
+    public String getName_request() {
+        return name_request;
     }
-    public void setNameRequest(String nameRequest) {
-        this.nameRequest = nameRequest;
+    public void setName_request(String name_request) {
+        this.name_request = name_request;
     }
     public Object getData() {
         return data;

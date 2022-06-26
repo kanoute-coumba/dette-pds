@@ -51,7 +51,7 @@ public class TemperatureTable {
             if(connection.client.isClosed())
                 connection = new ClientToServer();
             Request request=new Request();
-            request.setNameRequest("get_temperature");
+            request.setName_request("get_temperature");
             HashMap<String,Object>param=new HashMap<String,Object>();
             param.put("id_windows", choice);
             request.setData(param);

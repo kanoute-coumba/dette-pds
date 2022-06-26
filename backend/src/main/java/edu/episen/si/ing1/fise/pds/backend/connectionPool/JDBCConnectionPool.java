@@ -6,26 +6,26 @@ public class JDBCConnectionPool {
     //les attributs
     private ArrayList<ConnectionDB> collection=new ArrayList<ConnectionDB>();
 
-    private static int maxConnection;
+    private static int max_connection;
 
-    private static int usedConnection=0;
+    private static int used_connection=0;
 
     //les accesseurs
-    public static int getMaxConnection() {
-        return maxConnection;
+    public static int getMax_connection() {
+        return max_connection;
     }
 
-    public static void setMaxConnection(int maxCon) {
-        maxConnection = maxCon;
+    public static void setMax_connection(int max_con) {
+        max_connection = max_con;
     }
 
 
-    public static int getUsedConnection() {
-        return usedConnection;
+    public static int getUsed_connection() {
+        return used_connection;
     }
 
-    public static void setUsedConnection(int usedCon) {
-        usedConnection = usedCon;
+    public static void setUsed_connection(int used_con) {
+        used_connection = used_con;
     }
 
     //le constructeur
@@ -40,9 +40,9 @@ public class JDBCConnectionPool {
     public synchronized ConnectionDB connectionEntity()
     {
 
-        if(usedConnection< maxConnection  && collection.size()>0) {
+        if(used_connection< max_connection  && collection.size()>0) {
             ConnectionDB con = collection.get(collection.size()-1);
-            usedConnection++;
+            used_connection++;
             collection.remove(con);
             return con;
         }
@@ -52,7 +52,7 @@ public class JDBCConnectionPool {
     public synchronized void returnCon(ConnectionDB con)
     {
         collection.add(con);
-        usedConnection--;
+        used_connection--;
     }
     public synchronized void Close()
     {

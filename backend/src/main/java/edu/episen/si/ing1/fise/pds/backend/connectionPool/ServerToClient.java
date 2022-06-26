@@ -25,7 +25,7 @@ public class ServerToClient {
     public String SendResponse(Request request) throws Exception {
         ConnectionDB con = data_source.takeCon();
         Connection connection = con.connection;
-        String request_name = request.getNameRequest();
+        String request_name = request.getName_request();
         System.out.println(request_name);
         String response_string = "";
         logger.info("++++++++++++++Send++++++++Response+++++++++++++++++");

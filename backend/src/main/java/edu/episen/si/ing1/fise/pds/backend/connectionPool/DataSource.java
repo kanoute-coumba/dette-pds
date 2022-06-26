@@ -4,35 +4,35 @@ import java.util.ArrayList;
 public class DataSource {
     //attributs
     static JDBCConnectionPool conPool=new JDBCConnectionPool ();
-    private int connectionInterval;
+    private int connection_interval;
 
     public int getMaxConnection()
     {
-        return conPool.getMaxConnection();
+        return conPool.getMax_connection();
     }
 
     public int getUsedConnection()
     {
-        return conPool.getUsedConnection();
+        return conPool.getUsed_connection();
     }
-    public void setMaxConnection(int maxCon)
+    public void setMaxConnection(int max_con)
     {
-        conPool.setMaxConnection(maxCon);
+        conPool.setMax_connection(max_con);
 
     }
 
-    public void setUsedConnection(int usedCon)
+    public void setUsedConnection(int used_con)
     {
-        conPool.setUsedConnection(usedCon);
+        conPool.setUsed_connection(used_con);
     }
 
     //constructor
-    public DataSource(int maxCon, int conInterv) {
+    public DataSource(int max_con, int con_interv) {
         setUsedConnection(0);
-        setMaxConnection(maxCon);
-        connectionInterval=conInterv;
+        setMaxConnection(max_con);
+        connection_interval=con_interv;
         ArrayList<ConnectionDB> cons=new ArrayList<ConnectionDB>();
-        for(int i=0;i<maxCon;i++)
+        for(int i=0;i<max_con;i++)
         {
             ConnectionDB c=new ConnectionDB();
             cons.add(c);

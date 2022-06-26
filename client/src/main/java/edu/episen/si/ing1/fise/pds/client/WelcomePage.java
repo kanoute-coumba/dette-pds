@@ -17,7 +17,7 @@ public class WelcomePage extends JFrame {
 
     private ClientToServer connection=new ClientToServer();
     GeneralServices company=null;
-    JPanel right=new JPanel(new BorderLayout());
+    private JPanel right=new JPanel(new BorderLayout());
     JPanel left = new JPanel(new GridLayout(5,1));
     Color color=new Color(190,245,116);
 
@@ -33,11 +33,11 @@ public class WelcomePage extends JFrame {
 
         JPanel p=new JPanel(new BorderLayout());
         JLabel image = new JLabel();
-        JLabel welcomeSentence = new JLabel("Bienvenue "+company.getCompany_name());
-        welcomeSentence.setHorizontalAlignment(JLabel.CENTER);
-        welcomeSentence.setFont(new Font("Serif", Font.ITALIC, 20));
+        JLabel welcome_sentence = new JLabel("Bienvenue "+company.getCompany_name());
+        welcome_sentence.setHorizontalAlignment(JLabel.CENTER);
+        welcome_sentence.setFont(new Font("Serif", Font.ITALIC, 20));
         p.add(image,BorderLayout.NORTH);
-        p.add(welcomeSentence,BorderLayout.CENTER);
+        p.add(welcome_sentence,BorderLayout.CENTER);
         p.setBackground(color);
         left.add(p);
 
@@ -52,7 +52,7 @@ public class WelcomePage extends JFrame {
         p=new JPanel(new GridLayout());
         JLabel use_case2 = new JLabel("Mappage Capteur/Equipement");
         use_case2.setHorizontalAlignment(JLabel.CENTER);
-        use_case2.setFont(new Font("Serif", Font.BOLD,17));
+        use_case2.setFont(new Font("Serif", Font.BOLD,17));;
         p.add(use_case2,BorderLayout.CENTER);
         p.setBackground(color);
         left.add(p);
@@ -69,32 +69,38 @@ public class WelcomePage extends JFrame {
             public void mouseClicked(MouseEvent e)
             {
                 ArrayList<Map>ws= WindowsTable.allRentedWorkSpace(connection, company.getId_generalservices());
-
-                    if (ws == null) {
-                        JOptionPane.showMessageDialog(new JFrame(),
-                                "Veuillez d'abord louer un espace", "Configuration fenetres, impossible pour le moment",
-                                JOptionPane.ERROR_MESSAGE);
-                    } else if (ws.isEmpty()) {
-
-                        JOptionPane.showMessageDialog(new JFrame(),
-                                "Veuillez d'abord louer un espace", "Configuration fenetres, impossible pour le moment",
-                                JOptionPane.ERROR_MESSAGE);
-                    } else {
-                        try
-                        {
-                            connection.client.close();
-
-                        }
-                        catch(Exception e1)
-                        {
-
-                        }
-                        Welcome welcome = new Welcome(company);
-                        //t.setVisible(true);
-                        dispose();
-                    }
+                if(ws==null )
+                {
+                    JOptionPane.showMessageDialog(new JFrame(),
+                            "Veuillez d'abord louer un espace","Configuration fenetres, impossible pour le moment",
+                            JOptionPane.ERROR_MESSAGE);
                 }
-            });
+                else if(ws.isEmpty())
+                {
+
+                    JOptionPane.showMessageDialog(new JFrame(),
+                            "Veuillez d'abord louer un espace","Configuration fenetres, impossible pour le moment",
+                            JOptionPane.ERROR_MESSAGE);
+                }
+                else
+                {
+                    try
+                    {
+                        connection.client.close();
+
+                    }
+                    catch(Exception e1)
+                    {
+
+
+                    }
+                    Welcome welcome = new Welcome(company);
+                    //t.setVisible(true);
+                    dispose();
+                }
+
+
+            }});
         p.addMouseListener(new MouseAdapter()
         {
             public void mouseEntered(MouseEvent e)
@@ -118,7 +124,15 @@ public class WelcomePage extends JFrame {
         {
             public void mouseClicked(MouseEvent e)
             {
+                try
+                {
+                    connection.client.close();
 
+                }
+                catch(Exception e1)
+                {
+
+                }
                 HomePage t = new HomePage();
                 t.setVisible(true);
                 dispose();
@@ -152,6 +166,13 @@ public class WelcomePage extends JFrame {
 
             @Override
             public void menuSelected(MenuEvent e) {
+                try
+                {
+                    connection.client.close();
+                }catch(Exception ex)
+                {
+                    ex.printStackTrace();
+                }
                 dispose();
             }
 
@@ -183,5 +204,6 @@ public class WelcomePage extends JFrame {
         myInterface();
         setVisible(true);
     }
+
 
 }

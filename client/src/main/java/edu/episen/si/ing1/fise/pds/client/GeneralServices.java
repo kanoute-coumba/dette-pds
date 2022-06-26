@@ -44,13 +44,10 @@ public class GeneralServices {
         ArrayList<Map> general_services=new ArrayList<Map>();
         try
         {
-            //if(connection.client.isClosed())
-               // connection = new ClientToServer();
             Request request=new Request();
-            request.setNameRequest("all_generalServices");
+            request.setName_request("all_generalServices");
             HashMap<String,Object>param=new HashMap<String,Object>();
             request.setData(param);
-            System.out.println("ON est llllllllllllllaaaaaaaaaaaaaa");
             Request response=connection.SendRequest(request);
             general_services=(ArrayList<Map>)response.getData();
         }catch(Exception e)
