@@ -3,7 +3,7 @@ package edu.episen.si.ing1.fise.pds.backend.connectionPool;
 import java.util.ArrayList;
 public class DataSource {
     //attributs
-    JDBCConnectionPool conPool=new JDBCConnectionPool ();
+    static JDBCConnectionPool conPool=new JDBCConnectionPool ();
     private int connectionInterval;
 
     public int getMaxConnection()
@@ -42,15 +42,15 @@ public class DataSource {
 
 
     //methods
-    public ConnectionDB takeCon()
+    public static ConnectionDB takeCon()
     {
         return conPool.connectionEntity();
     }
-    public void returnCon(ConnectionDB con)
+    public static void returnCon(ConnectionDB con)
     {
         conPool.returnCon(con);
     }
-    public void closure()
+    public static void closure()
     {
         conPool.Close();
     }

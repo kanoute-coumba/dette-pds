@@ -6,25 +6,25 @@ public class JDBCConnectionPool {
     //les attributs
     private ArrayList<ConnectionDB> collection=new ArrayList<ConnectionDB>();
 
-    private int maxConnection;
+    private static int maxConnection;
 
-    private int usedConnection=0;
+    private static int usedConnection=0;
 
     //les accesseurs
-    public int getMaxConnection() {
+    public static int getMaxConnection() {
         return maxConnection;
     }
 
-    public void setMaxConnection(int maxCon) {
+    public static void setMaxConnection(int maxCon) {
         maxConnection = maxCon;
     }
 
 
-    public int getUsedConnection() {
+    public static int getUsedConnection() {
         return usedConnection;
     }
 
-    public void setUsedConnection(int usedCon) {
+    public static void setUsedConnection(int usedCon) {
         usedConnection = usedCon;
     }
 

@@ -16,7 +16,7 @@ import javax.swing.event.MenuListener;
 public class WelcomePage extends JFrame {
 
     private ClientToServer connection=new ClientToServer();
-    GeneralServices company;
+    GeneralServices company=null;
     JPanel right=new JPanel(new BorderLayout());
     JPanel left = new JPanel(new GridLayout(5,1));
     Color color=new Color(190,245,116);

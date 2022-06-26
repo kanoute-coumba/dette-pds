@@ -10,7 +10,7 @@ import java.util.Map;
 
 import javax.swing.*;
 
-public class HomePage extends JFrame  {
+public class HomePage extends JFrame {
     ClientToServer connection=new ClientToServer();
     ArrayList<Map> company_names=GeneralServices.All_GeneralServices(connection);
     GeneralServices my_company=new GeneralServices(1," Saisir le nom de votre entreprise.....");
@@ -58,22 +58,15 @@ public class HomePage extends JFrame  {
         valider.addActionListener (new ActionListener () {
             public void actionPerformed(ActionEvent e) {
 
-
                 if(my_company.getCompany_name()!=" Saisir le nom de votre entreprise.....")
                 {
-                    /*
-                    try {
-
+                    try
                     {
                         connection.client.close();
-
-                    }
-                    catch(Exception e1)
+                    }catch(Exception ex)
                     {
-                        e1.printStackTrace();
+                        ex.printStackTrace();
                     }
-
-                    */
                     WelcomePage next_view=new WelcomePage(my_company);
                     dispose();
                 }
